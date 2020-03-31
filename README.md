@@ -1,2 +1,2 @@
-# tone
-A Telegram API library for Deno
+# links
+A LinkedIn API library for Deno
