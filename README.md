@@ -1,2 +1,2 @@
-# links
-A LinkedIn API library for Deno
+# youtube-data-api-deno
+A YouTube Data API library for Deno
