@@ -80,17 +80,18 @@ export class YouTubeDataAPI {
 
 
   // this is made only for testing... isko hatana h baad me
-  search_list(params: param) {
-    params["key"] = this.key;
+  search_list() {
+    let a;
+  //  params["key"] = this.key;
 
-    let request_url = this.create_url("search?part=snippet");
+    let request_url = this.create_url("search?part=snippet&key=");
     let options = { headers: this.headers };
     const response = fetch(request_url, options)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data)
+      console.log(data);
     });
 
   }
@@ -99,6 +100,6 @@ export class YouTubeDataAPI {
 // this is just to test for now
 let obj = new YouTubeDataAPI('', false); //put your key here
 
-let s = obj.search_list({ "part": "snippet", "maxResults": 5 });
+let s = obj.search_list();
 
 console.log(s);
