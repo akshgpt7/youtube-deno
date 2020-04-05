@@ -108,10 +108,13 @@ export class YouTubeDataAPI {
 
     let request_url = this.create_url("search");
     let options = { headers: this.headers, searchParams: params };
-    let response = ky.get(request_url, options);
-    let responseJSON = response;
-
-    return responseJSON;
+    const response = fetch(request_url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    });
   }
 }
 
