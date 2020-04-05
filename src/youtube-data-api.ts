@@ -76,33 +76,7 @@ export class YouTubeDataAPI {
     regionCode?: string,
   ) {
     // change to take only obj as function param
-
-    let query_params: param = { "key": this.key, "part": part };
-    if (params === undefined) {
-      if (!(channelId === undefined)) query_params["channelId"] = channelId;
-      if (!(home === undefined)) query_params["home"] = home;
-      if (!(maxResults === undefined)) query_params["maxResults"] = maxResults;
-      if (!(mine === undefined)) query_params["mine"] = mine;
-      if (!(pageToken === undefined)) query_params["pageToken"] = pageToken;
-      if (!(publishedAfter === undefined)) {
-        query_params["publishedAfter"] = publishedAfter;
-      }
-      if (!(publishedBefore === undefined)) {
-        query_params["publishedBefore"] = publishedBefore;
-      }
-      if (!(regionCode === undefined)) query_params["regionCode"] = regionCode;
-    } else {
-      query_params = params;
-    }
-
-    let request_url = this.create_url("activities");
-    let options = { headers: this.headers, searchParams: query_params };
-    let response = ky.get(request_url, options).json();
-
-    return response;
-  }
-
-
+}
 
 
   // this is made only for testing... isko hatana h baad me
@@ -110,7 +84,7 @@ export class YouTubeDataAPI {
     params["key"] = this.key;
 
     let request_url = this.create_url("search?part=snippet");
-    let options = { headers: this.headers};
+    let options = { headers: this.headers };
     const response = fetch(request_url, options)
     .then((response) => {
       return response.json();
@@ -123,6 +97,8 @@ export class YouTubeDataAPI {
 }
 
 // this is just to test for now
-let obj = new YouTubeDataAPI('AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk', false); //put your key here
+let obj = new YouTubeDataAPI('', false); //put your key here
 
 let s = obj.search_list({ "part": "snippet", "maxResults": 5 });
+
+console.log(s);
