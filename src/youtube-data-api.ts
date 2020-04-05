@@ -99,14 +99,14 @@ export class YouTubeDataAPI {
 
 
  // this is made only for testing... isko hatana h baad me
-  search_list(params:param) {
+  async search_list(params:param) {
 
     params["key"] = this.key;
 
     let request_url = this.create_url("search");
-    let options = {headers: this.headers, searchParams: params};
-    let response = ky.get(request_url, options);
-    let responseJSON = response;
+    let options = {headers: this.headers, searchParams: params, method: 'GET'};
+    let response = await fetch(request_url, options);
+    let responseJSON = response.json();
 
     return responseJSON;
   }
@@ -123,7 +123,7 @@ export class YouTubeDataAPI {
 
 
 // this is just to test for now
-let obj = new YouTubeDataAPI('', false); //put your key here
+let obj = new YouTubeDataAPI('AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk', false); //put your key here
 
 let s = obj.search_list({'part': 'snippet', 'maxResults': 5});
 console.log(s);
