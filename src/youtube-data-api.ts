@@ -2,12 +2,11 @@
  *   on the YouTube website into your own website or application.
  */
 
-import ky from 'https://unpkg.com/ky/index.js';
+import ky from "https://unpkg.com/ky/index.js";
 
-
-const provider = '/youtube';
-const version = '/v3';
-const base_url: string = 'https://www.googleapis.com';
+const provider = "/youtube";
+const version = "/v3";
+const base_url: string = "https://www.googleapis.com";
 const root_url: string = base_url + provider + version + "/";
 
 interface header {
@@ -18,25 +17,26 @@ interface param {
   [parameter: string]: any;
 }
 
-
 export class YouTubeDataAPI {
   key: string;
-  token: (string|boolean);
+  token: (string | boolean);
   headers: header = {};
 
-  constructor(readonly api_key:string, access_token:(boolean|string)) {
+  constructor(readonly api_key: string, access_token: (boolean | string)) {
     this.key = api_key;
     this.token = access_token;
-    if (this.token == false){
-          this.headers = {'Accept': 'application/json'};
-    }
-    else {
-      this.headers = {'Authorization': 'Bearer ${this.token}', 'Accept': 'application/json'};
+    if (this.token == false) {
+      this.headers = { "Accept": "application/json" };
+    } else {
+      this.headers = {
+        "Authorization": "Bearer ${this.token}",
+        "Accept": "application/json",
+      };
     }
   }
 
   private build_insert_headers() {
-    this.headers['Content-Type'] = 'application/json';
+    this.headers["Content-Type"] = "application/json";
   }
 
   private create_url(method: string) {
@@ -44,11 +44,9 @@ export class YouTubeDataAPI {
     return url;
   }
 
+  // API METHODS
 
-// API METHODS
-
-
-/**
+  /**
    * youtube.activities.list
    * @desc Returns a list of channel activity events that match the request criteria. For example, you can retrieve events associated with a particular channel, events associated with the user's subscriptions and Google+ friends, or the YouTube home page feed, which is customized for each user.
    *
@@ -65,32 +63,40 @@ export class YouTubeDataAPI {
    * @return {object} Rsponse JSON
    */
 
-  activities_list(params?:param, part?:string, channelId?:string, home?:boolean,
-                  maxResults?:number, mine?:boolean, pageToken?:string,
-                  publishedAfter?:string, publishedBefore?:string,
-                  regionCode?:string) {
+  activities_list(
+    params?: param,
+    part?: string,
+    channelId?: string,
+    home?: boolean,
+    maxResults?: number,
+    mine?: boolean,
+    pageToken?: string,
+    publishedAfter?: string,
+    publishedBefore?: string,
+    regionCode?: string,
+  ) {
+    // change to take only obj as function param
 
-
- // change to take only obj as function param
-
-
-    let query_params: param = {"key": this.key, "part": part};
-    if (params === undefined){
-      if (!(channelId === undefined)) {query_params["channelId"] = channelId;}
-      if (!(home === undefined)) {query_params["home"] = home;}
-      if (!(maxResults === undefined)) {query_params["maxResults"] = maxResults;}
-      if (!(mine === undefined)) {query_params["mine"] = mine;}
-      if (!(pageToken === undefined)) {query_params["pageToken"] = pageToken;}
-      if (!(publishedAfter === undefined)) {query_params["publishedAfter"] = publishedAfter;}
-      if (!(publishedBefore === undefined)) {query_params["publishedBefore"] = publishedBefore;}
-      if (!(regionCode === undefined)) {query_params["regionCode"] = regionCode;}
-    }
-    else{
+    let query_params: param = { "key": this.key, "part": part };
+    if (params === undefined) {
+      if (!(channelId === undefined)) query_params["channelId"] = channelId;
+      if (!(home === undefined)) query_params["home"] = home;
+      if (!(maxResults === undefined)) query_params["maxResults"] = maxResults;
+      if (!(mine === undefined)) query_params["mine"] = mine;
+      if (!(pageToken === undefined)) query_params["pageToken"] = pageToken;
+      if (!(publishedAfter === undefined)) {
+        query_params["publishedAfter"] = publishedAfter;
+      }
+      if (!(publishedBefore === undefined)) {
+        query_params["publishedBefore"] = publishedBefore;
+      }
+      if (!(regionCode === undefined)) query_params["regionCode"] = regionCode;
+    } else {
       query_params = params;
     }
 
     let request_url = this.create_url("activities");
-    let options = {headers: this.headers, searchParams: query_params};
+    let options = { headers: this.headers, searchParams: query_params };
     let response = ky.get(request_url, options).json();
 
     return response;
@@ -98,32 +104,25 @@ export class YouTubeDataAPI {
 
 
 
- // this is made only for testing... isko hatana h baad me
-  async search_list(params:param) {
 
+  // this is made only for testing... isko hatana h baad me
+  search_list(params: param) {
     params["key"] = this.key;
 
-    let request_url = this.create_url("search");
-    let options = {headers: this.headers, searchParams: params, method: 'GET'};
-    let response = await fetch(request_url, options);
-    let responseJSON = response.json();
+    let request_url = this.create_url("search?part=snippet");
+    let options = { headers: this.headers};
+    const response = fetch(request_url, options)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    });
 
-    return responseJSON;
   }
-
-
-
-
-
-
-
 }
-
-
-
 
 // this is just to test for now
 let obj = new YouTubeDataAPI('AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk', false); //put your key here
 
-let s = obj.search_list({'part': 'snippet', 'maxResults': 5});
-console.log(s);
+let s = obj.search_list({ "part": "snippet", "maxResults": 5 });
