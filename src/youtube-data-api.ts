@@ -9,6 +9,8 @@ const version = "/v3";
 const base_url: string = "https://www.googleapis.com";
 const root_url: string = base_url + provider + version + "/";
 
+let re: any;
+
 interface header {
   [key: string]: string;
 }
@@ -21,6 +23,7 @@ export class YouTubeDataAPI {
   key: string;
   token: (string | boolean);
   headers: header = {};
+  resp: any;
 
   constructor(readonly api_key: string, access_token: (boolean | string)) {
     this.key = api_key;
@@ -81,25 +84,28 @@ export class YouTubeDataAPI {
 
   // this is made only for testing... isko hatana h baad me
   search_list() {
-    let a;
   //  params["key"] = this.key;
 
     let request_url = this.create_url("search?part=snippet&key=AIzaSyCQoWzxM-ZARFgf1hSW8uA2Uy--OQRAOWg");
     let options = { headers: this.headers };
-    const response = fetch(request_url, options)
-    .then((response) => {
+
+    return fetch(request_url, options)
+    .then(function(response){
       return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-    });
+        });
+
+
+
+    //.then(response => {return response.json();})
+    //.then(data => {return data;});
 
   }
+
 }
 
 // this is just to test for now
 let obj = new YouTubeDataAPI('', false); //put your key here
 
-let s = obj.search_list();
-
-console.log(s);
+obj.search_list().then(function(response){
+  console.log(response)
+});
