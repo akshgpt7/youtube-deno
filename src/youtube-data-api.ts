@@ -92,7 +92,7 @@ export class YouTubeDataAPI {
     return fetch(request_url, options)
     .then(function(response){
       return response.json();
-        });
+    });
 
 
 
