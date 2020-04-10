@@ -86,7 +86,7 @@ export class YouTubeDataAPI {
   search_list() {
   //  params["key"] = this.key;
 
-    let request_url = this.create_url("search?part=snippet&key=AIzaSyCQoWzxM-ZARFgf1hSW8uA2Uy--OQRAOWg");
+    let request_url = this.create_url("search?part=snippet&key=");  // add key here
     let options = { headers: this.headers };
 
     return fetch(request_url, options)
