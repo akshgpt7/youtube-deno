@@ -4,7 +4,8 @@
 
 
 /* Issues:
- *  make schema for activity resource and add to body of schema_activities_insert (https://developers.google.com/youtube/v3/docs/activities#resource)
+ *  make schema for all resource types for sending in POST body
+ *  add standard parameters to all schemas
  */
 
 const provider = "/youtube";
@@ -39,12 +40,48 @@ interface schema_activities_insert extends param {
   part: string;
 }
 
+interface schema_captions_list extends param {
+  part: string;
+  videoId: string;
+  id?: string;
+  onBehalfOfContentOwner?: string;
+  onBehalfOf?: string;
+}
+
+interface schema_captions_insert extends param {
+  part: string;
+  onBehalfOf?: string;
+  onBehalfOfContentOwner?: string;
+  sync?: boolean;
+}
+
+interface schema_captions_update extends param {
+  part: string;
+  onBehalfOf?: string;
+  onBehalfOfContentOwner?: string;
+  sync?: boolean;
+}
+
+interface schema_captions_download extends param {
+  id: string;
+  onBehalfOf?: string;
+  onBehalfOfContentOwner?: string;
+  tfmt?: "sbv" | "scc" | "srt" | "ttml" | "vtt";
+  tlang?: string;
+}
+
+interface schema_captions_delete extends param{
+  id: string;
+  onBehalfOf?: string;
+  onBehalfOfContentOwner?: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
   token: (string | boolean);
   headers: header = {};
-  POST_headers: header = {};
+  content_headers: header = {};
   resp: any;
 
   constructor(readonly api_key:string, access_token:(boolean | string)) {
@@ -54,21 +91,23 @@ export class YouTubeDataAPI {
       this.headers = { "Accept": "application/json" };
     } else {
       this.headers = {
-        "Authorization": "Bearer ${this.token}",
+        "Authorization": `Bearer ${this.token}`,
         "Accept": "application/json",
       };
     }
 
-    this.POST_headers = this.headers;
-    this.POST_headers["Content-Type"] = "application/json";
+    this.content_headers = this.headers;
+    this.content_headers["Content-Type"] = "application/json";
   }
 
 
   private create_url(method:string, params?:param) {
-    let url = root_url + method + "?key=" + this.key;
+    let url = root_url + method + `?key=${this.key}`;
 
-    for (let p in params){
-      url += ("&" + p + "=" + params[p].toString());
+    if (params !== undefined){
+      for (let p in params){
+        url += `&${p}=${params[p].toString()}`;
+      }
     }
 
     return url;
@@ -78,7 +117,7 @@ export class YouTubeDataAPI {
   // API METHODS
 
 
-  activities_list(params?:schema_activities_list) {
+  activities_list(params:schema_activities_list) {
     let method = "activities";
     let request_url = this.create_url(method, params);
 
@@ -90,11 +129,79 @@ export class YouTubeDataAPI {
     });
   }
 
-  activities_insert(body:object, params?:schema_activities_insert){
+  activities_insert(params:schema_activities_insert, body:object){
     let method = "activities";
     let request_url = this.create_url(method, params);
 
-    let init = { headers: this.POST_headers, body: body.toString(), method: "POST" };
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  captions_list(params:schema_captions_list){
+    let method = "captions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  captions_insert(params:schema_captions_insert, body:object){
+    let method = "captions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  captions_update(params:schema_captions_update, body:object){
+    let method = "captions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  captions_download(params:schema_captions_download){
+    let id = params["id"];
+    let no_id_params: param = {};
+    for (let i in params) {
+      if (i == "id") {
+        continue;
+      }
+      else {
+        no_id_params[i] = params[i];
+      }
+    }
+
+    let method = "captions/" + id;
+    let request_url = this.create_url(method, no_id_params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+  }
+
+  captions_delete(params:schema_captions_delete){
+    let method = "captions"
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
 
     return fetch(request_url, init)
     .then(function(response){
@@ -107,13 +214,17 @@ export class YouTubeDataAPI {
 
 
 
-
-
-
 }
 
 
 
+// test calls
+
+ let obj = new YouTubeDataAPI("", false);
+
+ obj.captions_list().then(function(response){
+   console.log(response);
+ });
 
 
 
@@ -121,48 +232,7 @@ export class YouTubeDataAPI {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// this is made only for testing... isko hatana h baad me
+// this section is made only for testing.
 /* search_list() {
 //  params["key"] = this.key;
 
