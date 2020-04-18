@@ -5,7 +5,7 @@
 
 /* Issues:
  *  make schema for all resource types for sending in POST body
- *  add standard parameters to all schemas
+ *  add standard parameters interface and extend it to all schemas
  */
 
 const provider = "/youtube";
@@ -73,6 +73,11 @@ interface schema_captions_download extends param {
 interface schema_captions_delete extends param{
   id: string;
   onBehalfOf?: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_channelBanners_insert extends param{
+  channelId?: string;
   onBehalfOfContentOwner?: string;
 }
 
@@ -194,15 +199,32 @@ export class YouTubeDataAPI {
 
     let init = { headers: this.headers };
 
-    return fetch(request_url, init)
+    return fetch(request_url, init);
   }
 
   captions_delete(params:schema_captions_delete){
-    let method = "captions"
+    let method = "captions";
     let request_url = this.create_url(method, params);
 
     let init = { headers: this.headers, method: "DELETE" };
 
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channelBanners_insert(params?: schema_channelBanners_insert, body?:object){
+    let method = "channelBanners/insert";
+    let request_url = this.create_url(method, params);
+
+    let init: object;
+    if (body !== undefined){
+      init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+    }
+    else{
+      init = { headers: this.content_headers, method: "POST" };
+    }
     return fetch(request_url, init)
     .then(function(response){
       return response.json();
@@ -222,7 +244,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("", false);
 
- obj.captions_list().then(function(response){
+ obj.channelBanners_insert().then(function(response){
    console.log(response);
  });
 
