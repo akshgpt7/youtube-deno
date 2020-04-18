@@ -70,14 +70,33 @@ interface schema_captions_download extends param {
   tlang?: string;
 }
 
-interface schema_captions_delete extends param{
+interface schema_captions_delete extends param {
   id: string;
   onBehalfOf?: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channelBanners_insert extends param{
+interface schema_channelBanners_insert extends param {
   channelId?: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_channels_list extends param {
+  part: string;
+  categoryId?: string;
+  forUsername?: string;
+  hl?: string;
+  id?: string;
+  managedByMe?: boolean;
+  maxResults?: number;
+  mine?: boolean;
+  mySubscribers?: boolean;
+  onBehalfOfContentOwner?: string;
+  pageToken?: string;
+}
+
+interface schema_channels_update extends param {
+  part: string;
   onBehalfOfContentOwner?: string;
 }
 
@@ -214,7 +233,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  channelBanners_insert(params?: schema_channelBanners_insert, body?:object){
+  channelBanners_insert(params?:schema_channelBanners_insert, body?:object){
     let method = "channelBanners/insert";
     let request_url = this.create_url(method, params);
 
@@ -225,6 +244,30 @@ export class YouTubeDataAPI {
     else{
       init = { headers: this.content_headers, method: "POST" };
     }
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channels_list(params:schema_channels_list){
+    let method = "channels";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channels_update(params:schema_channels_update, body:object){
+    let method = "channels";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
     return fetch(request_url, init)
     .then(function(response){
       return response.json();
@@ -244,7 +287,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("", false);
 
- obj.channelBanners_insert().then(function(response){
+ obj.channels_update({part: "snippet"}, {}).then(function(response){
    console.log(response);
  });
 
