@@ -125,6 +125,44 @@ interface schema_channelSections_delete extends param {
   onBehalfOfContentOwner?: string;
 }
 
+interface schema_comments_list extends param {
+  part: string;
+  id?: string;
+  maxResults?: number;
+  pageToken?: string;
+  parentId?: string;
+  textFormat?: "html" | "plainText";
+}
+
+interface schema_comments_insert extends param {
+  part: string;
+}
+
+interface schema_comments_update extends param {
+  part: string;
+}
+
+interface schema_comments_markAsSpam extends param {
+  id: string;
+}
+
+interface schema_comments_setModerationStatus extends param {
+  id: string;
+  moderationStatus: "heldForReview" | "published" | "rejected";
+  banAuthor?: boolean;
+}
+
+interface schema_comments_markAsSpam extends param {
+  id: string;
+}
+
+interface schema_comments_delete extends param {
+  id: string;
+}
+
+
+
+
 export class YouTubeDataAPI {
   key: string;
   token: (string | boolean);
@@ -346,6 +384,82 @@ export class YouTubeDataAPI {
     });
   }
 
+  comments_list(params:schema_comments_list) {
+    let method = "comments";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  comments_insert(params:schema_comments_insert, body:object) {
+    let method = "comments";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  comments_update(params:schema_comments_update, body?:object) {
+    let method = "comments";
+    let request_url = this.create_url(method, params);
+
+    let init: object;
+    if (body !== undefined){
+      init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+    }
+    else{
+      init = { headers: this.content_headers, method: "PUT" };
+    }
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  comments_markAsSpam(params:schema_comments_markAsSpam) {
+    let method = "comments/markAsSpam";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  comments_setModerationStatus(params:schema_comments_setModerationStatus) {
+    let method = "comments/setModerationStatus";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  comments_delete(params:schema_comments_delete) {
+    let method = "comments";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
 
 
 
@@ -360,7 +474,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("", false);
 
- obj.channelSections_delete({id: "snippet"}).then(function(response){
+ obj.comments_delete({id: "snippet"}).then(function(response){
    console.log(response);
  });
 
