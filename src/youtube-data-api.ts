@@ -4,14 +4,14 @@
 
 
 /* Issues:
- *  make schema for all resource types for sending in POST body
+ *  make schema for all resource types for sending as request body
  *  add standard parameters interface and extend it to all schemas
  */
 
-const provider = "/youtube";
+const service = "/youtube";
 const version = "/v3";
 const base_url: string = "https://www.googleapis.com";
-const root_url: string = base_url + provider + version + "/";
+const root_url: string = base_url + service + version + "/";
 
 interface header {
   [key: string]: string;
@@ -100,6 +100,30 @@ interface schema_channels_update extends param {
   onBehalfOfContentOwner?: string;
 }
 
+interface schema_channelSections_list extends param {
+  part: string;
+  channelId?: string;
+  hl?: string;
+  id?: string;
+  mine?: boolean;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_channelSections_insert extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+}
+
+interface schema_channelSections_update extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_channelSections_delete extends param {
+  id: string;
+  onBehalfOfContentOwner?: string;
+}
 
 export class YouTubeDataAPI {
   key: string;
@@ -153,7 +177,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  activities_insert(params:schema_activities_insert, body:object){
+  activities_insert(params:schema_activities_insert, body:object) {
     let method = "activities";
     let request_url = this.create_url(method, params);
 
@@ -165,7 +189,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  captions_list(params:schema_captions_list){
+  captions_list(params:schema_captions_list) {
     let method = "captions";
     let request_url = this.create_url(method, params);
 
@@ -177,7 +201,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  captions_insert(params:schema_captions_insert, body:object){
+  captions_insert(params:schema_captions_insert, body:object) {
     let method = "captions";
     let request_url = this.create_url(method, params);
 
@@ -189,7 +213,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  captions_update(params:schema_captions_update, body:object){
+  captions_update(params:schema_captions_update, body:object) {
     let method = "captions";
     let request_url = this.create_url(method, params);
 
@@ -201,7 +225,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  captions_download(params:schema_captions_download){
+  captions_download(params:schema_captions_download) {
     let id = params["id"];
     let no_id_params: param = {};
     for (let i in params) {
@@ -221,7 +245,7 @@ export class YouTubeDataAPI {
     return fetch(request_url, init);
   }
 
-  captions_delete(params:schema_captions_delete){
+  captions_delete(params:schema_captions_delete) {
     let method = "captions";
     let request_url = this.create_url(method, params);
 
@@ -233,7 +257,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  channelBanners_insert(params?:schema_channelBanners_insert, body?:object){
+  channelBanners_insert(params?:schema_channelBanners_insert, body?:object) {
     let method = "channelBanners/insert";
     let request_url = this.create_url(method, params);
 
@@ -250,7 +274,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  channels_list(params:schema_channels_list){
+  channels_list(params:schema_channels_list) {
     let method = "channels";
     let request_url = this.create_url(method, params);
 
@@ -262,7 +286,7 @@ export class YouTubeDataAPI {
     });
   }
 
-  channels_update(params:schema_channels_update, body:object){
+  channels_update(params:schema_channels_update, body:object) {
     let method = "channels";
     let request_url = this.create_url(method, params);
 
@@ -273,6 +297,55 @@ export class YouTubeDataAPI {
       return response.json();
     });
   }
+
+  channelSections_list(params:schema_channelSections_list) {
+    let method = "channelSections";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channelSections_insert(params:schema_channelBanners_insert, body:object) {
+    let method = "channelSections";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channelSections_update(params:schema_channelSections_update, body:object) {
+    let method = "channelSections";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  channelSections_delete(params:schema_channelSections_delete) {
+    let method = "channelSections";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -287,7 +360,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("", false);
 
- obj.channels_update({part: "snippet"}, {}).then(function(response){
+ obj.channelSections_delete({id: "snippet"}).then(function(response){
    console.log(response);
  });
 
