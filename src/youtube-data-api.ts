@@ -6,6 +6,7 @@
 /* Issues:
  *  make schema for all resource types for sending as request body
  *  add standard parameters interface and extend it to all schemas
+ *  make filter type params mutually exclusive (check that only one filter is passed)
  */
 
 const service = "/youtube";
@@ -160,7 +161,27 @@ interface schema_comments_delete extends param {
   id: string;
 }
 
+interface schema_commentThreads_list extends param {
+  part: string;
+  allThreadsRelatedToChannelId?: string;
+  channelId?: string;
+  id?: string;
+  maxResults?: number;
+  moderationStatus?: "heldForReview" | "likelySpam" | "published";
+  order?: "relevance" | "time";
+  pageToken?: string;
+  searchTerms?: string;
+  textFormat?: "html" | "plainText";
+  videoId?: string;
+}
 
+interface schema_commentThreads_insert extends param {
+  part: string;
+}
+
+interface schema_commentThreads_update extends param {
+  part: string;
+}
 
 
 export class YouTubeDataAPI {
@@ -461,6 +482,42 @@ export class YouTubeDataAPI {
     });
   }
 
+  commentThreads_list(params:schema_commentThreads_list) {
+    let method = "commentThreads";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  commentThreads_insert(params:schema_commentThreads_insert, body:object) {
+    let method = "commentThreads";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  commentThreads_update(params:schema_commentThreads_update, body:object) {
+    let method = "commentThreads";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -472,9 +529,9 @@ export class YouTubeDataAPI {
 
 // test calls
 
- let obj = new YouTubeDataAPI("", false);
+ let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.comments_delete({id: "snippet"}).then(function(response){
+ obj.commentThreads_update({part: "snippet"}, {}).then(function(response){
    console.log(response);
  });
 
