@@ -7,6 +7,7 @@
  *  make schema for all resource types for sending as request body
  *  add standard parameters interface and extend it to all schemas
  *  make filter type params mutually exclusive (check that only one filter is passed)
+ *  test suite for all functions
  */
 
 const service = "/youtube";
@@ -181,6 +182,23 @@ interface schema_commentThreads_insert extends param {
 
 interface schema_commentThreads_update extends param {
   part: string;
+}
+
+interface schema_guideCategories_list extends param {
+  part: string;
+  hl?: string;
+  id?: string;
+  regionCode?: string;
+}
+
+interface schema_i18nLanguages_list extends param {
+  part: string;
+  hl?: string;
+}
+
+interface schema_i18nRegions_list extends param {
+  part: string;
+  hl?: string;
 }
 
 
@@ -518,6 +536,46 @@ export class YouTubeDataAPI {
     });
   }
 
+  guideCategories_list(params:schema_guideCategories_list) {
+    let method = "guideCategories";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  i18nLanguages_list(params:schema_i18nLanguages_list) {
+    let method = "i18nLanguages";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  i18nRegions_list(params:schema_i18nRegions_list) {
+    let method = "i18nRegions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  // NOTE: The members.list and membershipsLevels.list methods of the API
+  // require prior approval from YouTube,
+  // hence we've not included thpse methods in this client library.
+
 
 
 
@@ -531,7 +589,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.commentThreads_update({part: "snippet"}, {}).then(function(response){
+ obj.i18nRegions_list({part: "snippet"}).then(function(response){
    console.log(response);
  });
 
