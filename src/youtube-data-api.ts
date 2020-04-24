@@ -201,6 +201,31 @@ interface schema_i18nRegions_list extends param {
   hl?: string;
 }
 
+interface schema_playlistItems_list extends param {
+  part: string;
+  id?: string;
+  maxResults?: number;
+  onBehalfOfContentOwner?: string;
+  pageToken?: string;
+  playlistId?: string;
+  videoId?: string;
+}
+
+interface schema_playlistItems_insert extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_playlistItems_update extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_playlistItems_delete extends param {
+  id: string;
+  onBehalfOfContentOwner?: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -574,8 +599,55 @@ export class YouTubeDataAPI {
 
   // NOTE: The members.list and membershipsLevels.list methods of the API
   // require prior approval from YouTube,
-  // hence we've not included thpse methods in this client library.
+  // hence we've not included those methods in this client library.
 
+  playlistItems_list(params:schema_playlistItems_list) {
+    let method = "playlistItems";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlistItems_insert(params:schema_playlistItems_insert, body:object) {
+    let method = "playlistItems";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlistItems_update(params:schema_playlistItems_update, body:object) {
+    let method = "playlistItems";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlistItems_delete(params:schema_playlistItems_delete) {
+    let method = "playlistItems";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
 
 
 
@@ -589,7 +661,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.i18nRegions_list({part: "snippet"}).then(function(response){
+ obj.playlistItems_delete({part: "snippet"}).then(function(response){
    console.log(response);
  });
 
