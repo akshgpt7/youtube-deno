@@ -226,6 +226,34 @@ interface schema_playlistItems_delete extends param {
   onBehalfOfContentOwner?: string;
 }
 
+interface schema_playlists_list extends param {
+  part: string;
+  channelId?: string;
+  hl?: string;
+  id?: string;
+  maxResults?: number;
+  mine?: boolean;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+  pageToken?: string;
+}
+
+interface schema_playlists_insert extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+}
+
+interface schema_playlists_update extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_playlists_delete extends param {
+  id: string;
+  onBehalfOfContentOwner?: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -649,6 +677,54 @@ export class YouTubeDataAPI {
     });
   }
 
+  playlists_list(params:schema_playlists_list) {
+    let method = "playlists";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlists_insert(params:schema_playlists_insert, body:object) {
+    let method = "playlists";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlists_update(params:schema_playlists_update, body:object) {
+    let method = "playlists";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  playlists_delete(params:schema_playlists_delete) {
+    let method = "playlists";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -661,7 +737,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.playlistItems_delete({part: "snippet"}).then(function(response){
+ obj.playlists_delete({part: "snippet"}).then(function(response){
    console.log(response);
  });
 
