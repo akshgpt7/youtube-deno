@@ -288,6 +288,29 @@ interface schema_search_list extends param {
   videoType?: "any" | "episode" | "movie";
 }
 
+interface schema_subscriptions_list extends param {
+  part: string;
+  channelId?: string;
+  forChannelId?: string;
+  id?: string;
+  maxResults?: number;
+  mine?: boolean;
+  myRecentSubscribers?: boolean;
+  mySubscribers?: boolean;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+  order?: "alphabetical" | "relevance" | "unread";
+  pageToken?: string;
+}
+
+interface schema_subscriptions_insert extends param {
+  part: string;
+}
+
+interface schema_subscriptions_delete extends param {
+  id: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -395,8 +418,7 @@ export class YouTubeDataAPI {
     for (let i in params) {
       if (i == "id") {
         continue;
-      }
-      else {
+      } else {
         no_id_params[i] = params[i];
       }
     }
@@ -428,8 +450,7 @@ export class YouTubeDataAPI {
     let init: object;
     if (body !== undefined){
       init = { headers: this.content_headers, body: body.toString(), method: "POST" };
-    }
-    else{
+    } else{
       init = { headers: this.content_headers, method: "POST" };
     }
     return fetch(request_url, init)
@@ -771,6 +792,42 @@ export class YouTubeDataAPI {
     });
   }
 
+  subscriptions_list(params:schema_subscriptions_list) {
+    let method = "subscriptions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  subscriptions_insert(params:schema_subscriptions_insert, body:object) {
+    let method = "subscriptions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  subscriptions_delete(params:schema_subscriptions_delete) {
+    let method = "subscriptions";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -783,7 +840,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.search_list({part: "snippet"}).then(function(response){
+ obj.subscriptions_delete({id: "snippet"}).then(function(response){
    console.log(response);
  });
 
