@@ -254,6 +254,40 @@ interface schema_playlists_delete extends param {
   onBehalfOfContentOwner?: string;
 }
 
+interface schema_search_list extends param {
+  part: string;
+  channelId?: string;
+  channelType?: "any" | "show";
+  eventType?: "completed" | "live" | "upcoming";
+  forContentOwner?: boolean;
+  forDeveloper?: boolean;
+  forMine?: boolean;
+  location?: string;
+  locationRadius?: string;
+  maxResults?: number;
+  onBehalfOfContentOwner?: string;
+  order?: "date" | "rating" | "relevance" | "title" | "videoCount" | "viewCount";
+  pageToken?: string;
+  publishedAfter?: string;
+  publishedBefore?: string;
+  q?: string;
+  regionCode?: string;
+  relatedToVideoId?: string;
+  relevanceLanguage?: string;
+  safeSearch?: "moderate" | "none" | "strict";
+  topicId?: string;
+  type?: string;
+  videoCaption?: "any" | "closedCaption" | "none";
+  videoCategoryId?: string;
+  videoDefinition?: "any" | "high" | "standard";
+  videoDimension?: "2d" | "3d" | "any";
+  videoDuration?: "any" | "long" | "medium" | "short";
+  videoEmbeddable?: "any" | "true";
+  videoLicense?: "any" | "creativeCommon" | "youtube";
+  videoSyndicated?: "any" | "true";
+  videoType?: "any" | "episode" | "movie";
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -725,6 +759,18 @@ export class YouTubeDataAPI {
     });
   }
 
+  search_list(params:schema_search_list) {
+    let method = "search";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -737,7 +783,7 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyyy", false);
 
- obj.playlists_delete({part: "snippet"}).then(function(response){
+ obj.search_list({part: "snippet"}).then(function(response){
    console.log(response);
  });
 
