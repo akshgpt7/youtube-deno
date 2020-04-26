@@ -3,7 +3,7 @@
  */
 
 
-/* Issues:
+/* Issues/TODO:
  *  make schema for all resource types for sending as request body
  *  add standard parameters interface and extend it to all schemas
  *  make filter type params mutually exclusive (check that only one filter is passed)
@@ -25,7 +25,7 @@ interface param {
 }
 
 
-// Parameter schemas for different methods
+// ----------Parameter schemas for different methods----------
 
 
 interface schema_activities_list extends param {
@@ -378,8 +378,20 @@ interface schema_videos_delete extends param {
   onBehalfOfContentOwner?: string;
 }
 
+interface schema_watermarks_set extends param {
+  channelId: string;
+  onBehalfOfContentOwner?: string;
+}
 
-export class YouTubeDataAPI {
+interface schema_watermarks_unset extends param {
+  channelId: string;
+  onBehalfOfContentOwner?: string;
+}
+
+
+// MAIN YouTube CLASS
+
+export class YouTube {
   key: string;
   token: (string | boolean);
   headers: header = {};
@@ -416,7 +428,7 @@ export class YouTubeDataAPI {
   }
 
 
-  // API METHODS
+  // ---------------API METHODS---------------
 
 
   activities_list(params:schema_activities_list) {
@@ -1012,19 +1024,38 @@ export class YouTubeDataAPI {
     });
   }
 
+  watermarks_set(params:schema_watermarks_set, body:object) {
+    let method = "watermarks/set";
+    let request_url = this.create_url(method, params);
 
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
 
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
 
+  watermarks_unset(params:schema_watermarks_unset) {
+    let method = "watermarks/unset";
+    let request_url = this.create_url(method, params);
 
+    let init = { headers: this.headers, method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
 
 }
 
 
 
 // test calls
-
- let obj = new YouTubeDataAPI("keyyy", false);
-
- obj.videos_delete({id: "snippet"}).then(function(response){
-   console.log(response);
- });
+//
+// let obj = new YouTube("keyyyy", false);
+//
+// obj.search_list({part: "snippet"}).then(function(response){
+//   console.log(response);
+// });
