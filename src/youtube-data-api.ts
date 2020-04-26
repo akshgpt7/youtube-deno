@@ -329,6 +329,55 @@ interface schema_videoCategories_list extends param {
   regionCode?: string;
 }
 
+interface schema_videos_list extends param {
+  part: string;
+  chart?: "mostPopular";
+  hl?: string;
+  id?: string;
+  locale?: string;
+  maxHeight?: number;
+  maxResults?: number;
+  maxWidth?: number;
+  myRating?: "dislike" | "like";
+  onBehalfOfContentOwner?: string;
+  pageToken?: string;
+  regionCode?: string;
+  videoCategoryId?: string;
+}
+
+interface schema_videos_insert extends param {
+  part: string;
+  autoLevels?: boolean;
+  notifySubscribers?: boolean;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+  stabilize?: boolean;
+}
+
+interface schema_videos_update extends param {
+  part: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_videos_rate extends param {
+  id: string;
+  rating?: "dislike" | "like" | "none";
+}
+
+interface schema_videos_getRating extends param {
+  id: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_videos_reportAbuse extends param {
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_videos_delete extends param {
+  id: string;
+  onBehalfOfContentOwner?: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -461,7 +510,10 @@ export class YouTubeDataAPI {
     });
   }
 
-  channelBanners_insert(params?:schema_channelBanners_insert, body?:object) {
+  channelBanners_insert(params:schema_channelBanners_insert, body?:object) {
+    // Provide an empty object {} as first function parameter if you do not
+    // want to pass any optional parameters.
+    // The second parameter being body.
     let method = "channelBanners/insert";
     let request_url = this.create_url(method, params);
 
@@ -873,6 +925,93 @@ export class YouTubeDataAPI {
     });
   }
 
+  videos_list(params:schema_videos_list) {
+    let method = "videos";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_insert(params:schema_videos_insert, body:object) {
+    let method = "videos";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_update(params:schema_videos_update, body:object) {
+    let method = "videos";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_rate(params:schema_videos_rate) {
+    let method = "videos/rate";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_getRating(params:schema_videos_getRating) {
+    let method = "videos/getRating";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_reportAbuse(params:schema_videos_reportAbuse, body:object) {
+    // Provide an empty object {} as first function parameter if you do not
+    // want to pass any optional url parameters.
+    // The second parameter being body.
+    let method = "videos/reportAbuse";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.content_headers, body: body.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videos_delete(params:schema_videos_delete) {
+    let method = "videos";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, method: "DELETE" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
 
 
 
@@ -886,34 +1025,6 @@ export class YouTubeDataAPI {
 
  let obj = new YouTubeDataAPI("keyyy", false);
 
- obj.videoCategories_list({part: "snippet"}).then(function(response){
+ obj.videos_delete({id: "snippet"}).then(function(response){
    console.log(response);
  });
-
-
-
-
-
-
-
-// this section is made only for testing.
-/* search_list() {
-//  params["key"] = this.key;
-
-  let request_url = this.create_url("search?part=snippet&key=");  // add key here
-  let options = { headers: this.headers };
-
-  return fetch(request_url, options)
-  .then(function(response){
-    return response.json();
-  });
-
-}
-
-// this is just to test for now
-let obj = new YouTubeDataAPI('', false); //put your key here
-
-obj.search_list().then(function(response){
-  console.log(response)
-});
-*/
