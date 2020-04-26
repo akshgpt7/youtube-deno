@@ -10,6 +10,7 @@
  *  test suite for all functions
  */
 
+
 const service = "/youtube";
 const version = "/v3";
 const base_url: string = "https://www.googleapis.com";
@@ -311,6 +312,23 @@ interface schema_subscriptions_delete extends param {
   id: string;
 }
 
+interface schema_thumbnails_set extends param {
+  videoId: string;
+  onBehalfOfContentOwner?: string;
+}
+
+interface schema_videoAbuseReportReasons_list extends param {
+  part: string;
+  hl?: string;
+}
+
+interface schema_videoCategories_list extends param {
+  part: string;
+  hl?: string;
+  id?: string;
+  regionCode?: string;
+}
+
 
 export class YouTubeDataAPI {
   key: string;
@@ -447,12 +465,8 @@ export class YouTubeDataAPI {
     let method = "channelBanners/insert";
     let request_url = this.create_url(method, params);
 
-    let init: object;
-    if (body !== undefined){
-      init = { headers: this.content_headers, body: body.toString(), method: "POST" };
-    } else{
-      init = { headers: this.content_headers, method: "POST" };
-    }
+    let init = { headers: this.content_headers, body: body?.toString(), method: "POST" };
+
     return fetch(request_url, init)
     .then(function(response){
       return response.json();
@@ -559,13 +573,8 @@ export class YouTubeDataAPI {
     let method = "comments";
     let request_url = this.create_url(method, params);
 
-    let init: object;
-    if (body !== undefined){
-      init = { headers: this.content_headers, body: body.toString(), method: "PUT" };
-    }
-    else{
-      init = { headers: this.content_headers, method: "PUT" };
-    }
+    let init = { headers: this.content_headers, body: body?.toString(), method: "PUT" };
+
     return fetch(request_url, init)
     .then(function(response){
       return response.json();
@@ -828,6 +837,43 @@ export class YouTubeDataAPI {
     });
   }
 
+  thumbnails_set(params:schema_thumbnails_set, body?:object) {
+    let method = "thumbnails/set";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers, body: body?.toString(), method: "POST" };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videoAbuseReportReasons_list(params:schema_videoAbuseReportReasons_list) {
+    let method = "videoAbuseReportReasons";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+  videoCategories_list(params:schema_videoCategories_list) {
+    let method = "videoCategories";
+    let request_url = this.create_url(method, params);
+
+    let init = { headers: this.headers };
+
+    return fetch(request_url, init)
+    .then(function(response){
+      return response.json();
+    });
+  }
+
+
 
 
 
@@ -838,9 +884,9 @@ export class YouTubeDataAPI {
 
 // test calls
 
- let obj = new YouTubeDataAPI("keyyyy", false);
+ let obj = new YouTubeDataAPI("keyyy", false);
 
- obj.subscriptions_delete({id: "snippet"}).then(function(response){
+ obj.videoCategories_list({part: "snippet"}).then(function(response){
    console.log(response);
  });
 
