@@ -24,7 +24,7 @@ interface param {
 
 // ----------Parameter schemas for different methods----------
 
-interface schema_activities_list extends param {
+export interface schema_activities_list extends param {
   part: string;
   channelId?: string;
   mine?: boolean;
@@ -35,11 +35,11 @@ interface schema_activities_list extends param {
   regionCode?: string;
 }
 
-interface schema_activities_insert extends param {
+export interface schema_activities_insert extends param {
   part: string;
 }
 
-interface schema_captions_list extends param {
+export interface schema_captions_list extends param {
   part: string;
   videoId: string;
   id?: string;
@@ -47,21 +47,21 @@ interface schema_captions_list extends param {
   onBehalfOf?: string;
 }
 
-interface schema_captions_insert extends param {
+export interface schema_captions_insert extends param {
   part: string;
   onBehalfOf?: string;
   onBehalfOfContentOwner?: string;
   sync?: boolean;
 }
 
-interface schema_captions_update extends param {
+export interface schema_captions_update extends param {
   part: string;
   onBehalfOf?: string;
   onBehalfOfContentOwner?: string;
   sync?: boolean;
 }
 
-interface schema_captions_download extends param {
+export interface schema_captions_download extends param {
   id: string;
   onBehalfOf?: string;
   onBehalfOfContentOwner?: string;
@@ -69,18 +69,18 @@ interface schema_captions_download extends param {
   tlang?: string;
 }
 
-interface schema_captions_delete extends param {
+export interface schema_captions_delete extends param {
   id: string;
   onBehalfOf?: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channelBanners_insert extends param {
+export interface schema_channelBanners_insert extends param {
   channelId?: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channels_list extends param {
+export interface schema_channels_list extends param {
   part: string;
   categoryId?: string;
   forUsername?: string;
@@ -94,12 +94,12 @@ interface schema_channels_list extends param {
   pageToken?: string;
 }
 
-interface schema_channels_update extends param {
+export interface schema_channels_update extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channelSections_list extends param {
+export interface schema_channelSections_list extends param {
   part: string;
   channelId?: string;
   hl?: string;
@@ -108,23 +108,23 @@ interface schema_channelSections_list extends param {
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channelSections_insert extends param {
+export interface schema_channelSections_insert extends param {
   part: string;
   onBehalfOfContentOwner?: string;
   onBehalfOfContentOwnerChannel?: string;
 }
 
-interface schema_channelSections_update extends param {
+export interface schema_channelSections_update extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_channelSections_delete extends param {
+export interface schema_channelSections_delete extends param {
   id: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_comments_list extends param {
+export interface schema_comments_list extends param {
   part: string;
   id?: string;
   maxResults?: number;
@@ -133,33 +133,33 @@ interface schema_comments_list extends param {
   textFormat?: "html" | "plainText";
 }
 
-interface schema_comments_insert extends param {
+export interface schema_comments_insert extends param {
   part: string;
 }
 
-interface schema_comments_update extends param {
+export interface schema_comments_update extends param {
   part: string;
 }
 
-interface schema_comments_markAsSpam extends param {
+export interface schema_comments_markAsSpam extends param {
   id: string;
 }
 
-interface schema_comments_setModerationStatus extends param {
+export interface schema_comments_setModerationStatus extends param {
   id: string;
   moderationStatus: "heldForReview" | "published" | "rejected";
   banAuthor?: boolean;
 }
 
-interface schema_comments_markAsSpam extends param {
+export interface schema_comments_markAsSpam extends param {
   id: string;
 }
 
-interface schema_comments_delete extends param {
+export interface schema_comments_delete extends param {
   id: string;
 }
 
-interface schema_commentThreads_list extends param {
+export interface schema_commentThreads_list extends param {
   part: string;
   allThreadsRelatedToChannelId?: string;
   channelId?: string;
@@ -173,32 +173,32 @@ interface schema_commentThreads_list extends param {
   videoId?: string;
 }
 
-interface schema_commentThreads_insert extends param {
+export interface schema_commentThreads_insert extends param {
   part: string;
 }
 
-interface schema_commentThreads_update extends param {
+export interface schema_commentThreads_update extends param {
   part: string;
 }
 
-interface schema_guideCategories_list extends param {
+export interface schema_guideCategories_list extends param {
   part: string;
   hl?: string;
   id?: string;
   regionCode?: string;
 }
 
-interface schema_i18nLanguages_list extends param {
+export interface schema_i18nLanguages_list extends param {
   part: string;
   hl?: string;
 }
 
-interface schema_i18nRegions_list extends param {
+export interface schema_i18nRegions_list extends param {
   part: string;
   hl?: string;
 }
 
-interface schema_playlistItems_list extends param {
+export interface schema_playlistItems_list extends param {
   part: string;
   id?: string;
   maxResults?: number;
@@ -208,22 +208,22 @@ interface schema_playlistItems_list extends param {
   videoId?: string;
 }
 
-interface schema_playlistItems_insert extends param {
+export interface schema_playlistItems_insert extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_playlistItems_update extends param {
+export interface schema_playlistItems_update extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_playlistItems_delete extends param {
+export interface schema_playlistItems_delete extends param {
   id: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_playlists_list extends param {
+export interface schema_playlists_list extends param {
   part: string;
   channelId?: string;
   hl?: string;
@@ -235,23 +235,23 @@ interface schema_playlists_list extends param {
   pageToken?: string;
 }
 
-interface schema_playlists_insert extends param {
+export interface schema_playlists_insert extends param {
   part: string;
   onBehalfOfContentOwner?: string;
   onBehalfOfContentOwnerChannel?: string;
 }
 
-interface schema_playlists_update extends param {
+export interface schema_playlists_update extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_playlists_delete extends param {
+export interface schema_playlists_delete extends param {
   id: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_search_list extends param {
+export interface schema_search_list extends param {
   part: string;
   channelId?: string;
   channelType?: "any" | "show";
@@ -291,7 +291,7 @@ interface schema_search_list extends param {
   videoType?: "any" | "episode" | "movie";
 }
 
-interface schema_subscriptions_list extends param {
+export interface schema_subscriptions_list extends param {
   part: string;
   channelId?: string;
   forChannelId?: string;
@@ -306,32 +306,32 @@ interface schema_subscriptions_list extends param {
   pageToken?: string;
 }
 
-interface schema_subscriptions_insert extends param {
+export interface schema_subscriptions_insert extends param {
   part: string;
 }
 
-interface schema_subscriptions_delete extends param {
+export interface schema_subscriptions_delete extends param {
   id: string;
 }
 
-interface schema_thumbnails_set extends param {
+export interface schema_thumbnails_set extends param {
   videoId: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_videoAbuseReportReasons_list extends param {
+export interface schema_videoAbuseReportReasons_list extends param {
   part: string;
   hl?: string;
 }
 
-interface schema_videoCategories_list extends param {
+export interface schema_videoCategories_list extends param {
   part: string;
   hl?: string;
   id?: string;
   regionCode?: string;
 }
 
-interface schema_videos_list extends param {
+export interface schema_videos_list extends param {
   part: string;
   chart?: "mostPopular";
   hl?: string;
@@ -347,7 +347,7 @@ interface schema_videos_list extends param {
   videoCategoryId?: string;
 }
 
-interface schema_videos_insert extends param {
+export interface schema_videos_insert extends param {
   part: string;
   autoLevels?: boolean;
   notifySubscribers?: boolean;
@@ -356,36 +356,36 @@ interface schema_videos_insert extends param {
   stabilize?: boolean;
 }
 
-interface schema_videos_update extends param {
+export interface schema_videos_update extends param {
   part: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_videos_rate extends param {
+export interface schema_videos_rate extends param {
   id: string;
   rating?: "dislike" | "like" | "none";
 }
 
-interface schema_videos_getRating extends param {
+export interface schema_videos_getRating extends param {
   id: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_videos_reportAbuse extends param {
+export interface schema_videos_reportAbuse extends param {
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_videos_delete extends param {
+export interface schema_videos_delete extends param {
   id: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_watermarks_set extends param {
+export interface schema_watermarks_set extends param {
   channelId: string;
   onBehalfOfContentOwner?: string;
 }
 
-interface schema_watermarks_unset extends param {
+export interface schema_watermarks_unset extends param {
   channelId: string;
   onBehalfOfContentOwner?: string;
 }
