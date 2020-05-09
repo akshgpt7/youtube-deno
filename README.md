@@ -1,5 +1,5 @@
-# :arrow_forward: youtube-deno : A Deno client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
-Lets you incorporate core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and almost any interaction with YouTube in your application.
+# :arrow_forward: youtube-deno : A [Deno](https://deno.land/) client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
+Lets you incorporate core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and almost any interaction with YouTube in your Deno application.
 
 # Installing
 *Deno allows you to directly import modules from URLs!*
@@ -27,7 +27,7 @@ let yt1 = new YouTube("Your-api-key-here", false); // The false if for access to
 ```
 (Remember: this object is not allowed to perform any operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only data. For these operations, see the OAuth section below)
 
-Now, to use this object, just call any function that only lists read-only public data. For example:
+Now, to use this object, just call [any function](https://github.com/akshgpt7/youtube-deno#available-functions) that only lists read-only public data. For example:
 ```ts
 yt1.search_list({part: "snippet"}).then(function(response){
  console.log(response);
@@ -41,12 +41,14 @@ After obtaining an access token by following theses steps, create an object like
 ```ts
 let yt2 = new YouTube("your-api-key-here", "access-token-here");
 ```
-Now, using this object you can call functions (by passing the apt parameters) which require YouTube account interactions.
+Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#available-functions) (by passing the apt parameters) which require YouTube account interactions.
 
 
 ## Available functions
-**For a detailed documentation, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br><br>
-The following is a list of functions that you can call using one of the objects created above:<br><br>
+**For a detailed documentation, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
+**For a better understanding of a particular function, refer the [API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
+
+The following is a list of functions that you can call using one of the objects created above:<br>
 
 The `param` parameter for each function must be an object type, following its [schema](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts#schema_activities_insert). 
 
@@ -100,5 +102,22 @@ The `param` parameter for each function must be an object type, following its [s
   - `videos_delete(params: schema_videos_delete)`
   - `watermarks_set(params: schema_watermarks_set, body: object)`
   - `watermarks_unset(params: schema_watermarks_unset)`
+  
+## Examples
+```ts
+// A simple example to call the search_list function and log the response json.
+import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
 
+let obj = new YouTube("AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk", false);
 
+obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
+ console.log(response);
+});
+
+```
+
+## Contributing
+youtube-deno needs your support! The goal of youtube-deno is to ease the usage of the YouTube API with Deno, which is a great piece of software!
+
+If you find that a method is missing, find a change in YouTube Data API v3, notice a bug or issue, just fork the project, add the missing code, write the appropriate tests, then submit a pull request, and it will gladly be merged!
+  
