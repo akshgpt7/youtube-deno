@@ -2,12 +2,6 @@
  *  on the YouTube website into your own website or application.
  */
 
-/* Issues/TODO:
- *  make schema for all resource types for sending as request body
- *  add standard parameters interface and extend it to all schemas
- *  make filter type params mutually exclusive (check that only one filter is passed)
- *  test suite for all functions
- */
 
 const service = "/youtube";
 const version = "/v3";

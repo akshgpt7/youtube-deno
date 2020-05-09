@@ -1,1 +1,1 @@
-export {YouTube} from './youtube-api-deno.ts';
+export * from './youtube-api-deno.ts';
