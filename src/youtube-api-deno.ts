@@ -391,7 +391,6 @@ export class YouTube {
   token: (string | boolean);
   headers: header = {};
   content_headers: header = {};
-  resp: any;
 
   constructor(readonly api_key: string, access_token: (boolean | string)) {
     this.key = api_key;
