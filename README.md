@@ -45,9 +45,10 @@ Now, using this object you can call functions (by passing the apt parameters) wh
 
 
 ## Available functions
+**For a detailed documentation, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br><br>
 The following is a list of functions that you can call using one of the objects created above:<br><br>
 
-The `param` parameter for each function must be an object type, following its schema. 
+The `param` parameter for each function must be an object type, following its [schema](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts#schema_activities_insert). 
 
   - `activities_list(params: schema_activities_list)`
   - `activities_insert(params: schema_activities_insert, body: object)`
