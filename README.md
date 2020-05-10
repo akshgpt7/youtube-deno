@@ -108,7 +108,7 @@ The `param` parameter for each function must be an object type, following its [s
 // A simple example to call the search_list function and log the response json.
 import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
 
-let obj = new YouTube("AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk", false);
+let obj = new YouTube("your-api-key-here", false);
 
 obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
  console.log(response);
