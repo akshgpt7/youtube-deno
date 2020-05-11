@@ -14,15 +14,17 @@ This library is a part of <br>
 ---
 <br>
 
-# Installing
+## Installing
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
 import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
 ```
-# Usage
+<br>
 
-## Configuring your App
+## Usage
+
+### Configuring your App
 Firstly, you'll have to register your app in the [Google Developers Console](https://console.developers.google.com/apis/dashboard).<br>
  Browse the console and select "New Project".<br>
  
@@ -50,12 +52,12 @@ yt1.search_list({part: "snippet"}).then(function(response){
 ### Objects that require user interactions (user consent by [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) authorization)
 If you need to make requests that involve access to a YouTube account, you need the owner of each account to authorize your app. For that, you need an access token to be passed to the object you create.
 
-After obtaining an access token by following [these steps](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#js-client-library) ([or this](https://developers.google.com/identity/protocols/oauth2)), create an object like this:
+After obtaining an access token by following [these steps](https://developers.google.com/identity/protocols/oauth2/web-server#httprest) ([or this](https://developers.google.com/identity/protocols/oauth2)), create an object like this:
 ```ts
 let yt2 = new YouTube("your-api-key-here", "access-token-here");
 ```
 Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#available-functions) (by passing the apt parameters) which require YouTube account interactions.
-
+<br><br>
 
 ## Available functions
 **For a detailed documentation of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
@@ -115,7 +117,8 @@ The `param` parameter for each function must be an object type, following its [s
   - `videos_delete(params: schema_videos_delete)`
   - `watermarks_set(params: schema_watermarks_set, body: object)`
   - `watermarks_unset(params: schema_watermarks_unset)`
-  
+<br>
+
 ## Examples
 ```ts
 // A simple example to call the search_list function and log the response json.
@@ -128,6 +131,7 @@ obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
 });
 
 ```
+<br>
 
 ## Contributing
 youtube-deno needs your support! The goal of youtube-deno is to ease the usage of the YouTube API with Deno, which is a great piece of software!
