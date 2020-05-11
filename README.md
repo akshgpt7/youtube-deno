@@ -1,11 +1,23 @@
-# :arrow_forward: youtube-deno : A [Deno](https://deno.land/) client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
+<div align="center">
+
+# youtube-deno : A [Deno](https://deno.land/) client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
+
 Lets you incorporate core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and almost any interaction with YouTube in your Deno application.
+<br><br>
+This library is a part of <br>
+<a href="https://deno.land/x/">
+<img src="https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/deno-64.png">
+</a>
+
+</div>
+
+---
 
 # Installing
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
-import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 ```
 # Usage
 
@@ -13,7 +25,7 @@ import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-de
 Firstly, you'll have to register your app in the [Google Developers Console](https://console.developers.google.com/apis/dashboard).<br>
  Browse the console and select "New Project".<br>
  
-After registering your app, enable the YouTube API for your app by clicking on the "ENABLE APIS AND SERVICES" button and selecting **"YouTube Data API v3"**.<br><br>
+After registering your app, enable the YouTube API for your app by clicking on the "ENABLE APIS AND SERVICES" button and selecting **"YouTube Data API v3"**.<br>
  
 After this, you'll need to create some credentials through the console to be able to make API requests.
 
