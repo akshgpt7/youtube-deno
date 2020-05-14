@@ -18,7 +18,7 @@ This library is a part of <br>
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
-import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 ```
 <br>
 
@@ -122,7 +122,7 @@ The `param` parameter for each function must be an object type, following its [s
 ## Examples
 ```ts
 // A simple example to call the search_list function and log the response json.
-import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
 let obj = new YouTube("your-api-key-here", false);
 
