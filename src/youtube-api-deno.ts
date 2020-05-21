@@ -2,19 +2,22 @@
  *  on the YouTube website into your own website or application.
  */
 
+// TODO: Separate out schemas into separate file.
+
 
 const service = "/youtube";
 const version = "/v3";
 const base_url: string = "https://www.googleapis.com";
 const root_url: string = base_url + service + version + "/";
 
-interface header {
+export interface header {
   [key: string]: string;
 }
 
-interface param {
+export interface param {
   [parameter: string]: any;
 }
+
 
 // ----------Parameter schemas for different methods----------
 
@@ -1123,6 +1126,8 @@ export class YouTube {
       });
   }
 }
+
+
 
 // test calls
 //
