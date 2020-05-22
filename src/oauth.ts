@@ -60,8 +60,7 @@ export class authenticator {
 ///// testing call
 let obj = new authenticator();
 let creds: queryParams = {
-  client_id:
-    "358555026629-51shvhftohpvbf3871m84k36ef2692d6.apps.googleusercontent.com",
+  client_id: "REDACTED",
   redirect_uri: "https://localhost:8080",
   scope: "https://www.googleapis.com/auth/youtube",
   prompt: "consent",
