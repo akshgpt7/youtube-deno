@@ -1,19 +1,34 @@
-# :arrow_forward: youtube-deno : A [Deno](https://deno.land/) client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
-Lets you incorporate core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and almost any interaction with YouTube in your Deno application.
+<div align="center">
 
-# Installing
+# youtube-deno : A [Deno](https://deno.land/) client for the [YouTube Data API](https://developers.google.com/youtube/v3/docs) 
+
+Lets you incorporate core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and almost any interaction with YouTube in your Deno application.
+<br><br>
+This library is a part of <br>
+<a href="https://deno.land/x/">
+<img src="https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/deno-64.png">
+</a>
+
+</div>
+
+---
+<br>
+
+## Installing
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
-import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 ```
-# Usage
+<br>
 
-## Configuring your App
+## Usage
+
+### Configuring your App
 Firstly, you'll have to register your app in the [Google Developers Console](https://console.developers.google.com/apis/dashboard).<br>
  Browse the console and select "New Project".<br>
  
-After registering your app, enable the YouTube API for your app by clicking on the "ENABLE APIS AND SERVICES" button and selecting **"YouTube Data API v3"**.<br><br>
+After registering your app, enable the YouTube API for your app by clicking on the "ENABLE APIS AND SERVICES" button and selecting **"YouTube Data API v3"**.<br>
  
 After this, you'll need to create some credentials through the console to be able to make API requests.
 
@@ -25,7 +40,7 @@ To create an object which uses this API key only for authentication:
 ```ts
 let yt1 = new YouTube("Your-api-key-here", false); // The false if for access token
 ```
-(Remember: this object is not allowed to perform any operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only data. For these operations, see the OAuth section below)
+(Remember: this object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
 
 Now, to use this object, just call [any function](https://github.com/akshgpt7/youtube-deno#available-functions) that only lists read-only public data. For example:
 ```ts
@@ -37,16 +52,16 @@ yt1.search_list({part: "snippet"}).then(function(response){
 ### Objects that require user interactions (user consent by [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) authorization)
 If you need to make requests that involve access to a YouTube account, you need the owner of each account to authorize your app. For that, you need an access token to be passed to the object you create.
 
-After obtaining an access token by following theses steps, create an object like this:
+After obtaining an access token by following [these steps](https://developers.google.com/identity/protocols/oauth2/web-server#httprest) ([or this](https://developers.google.com/identity/protocols/oauth2)), create an object like this:
 ```ts
 let yt2 = new YouTube("your-api-key-here", "access-token-here");
 ```
 Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#available-functions) (by passing the apt parameters) which require YouTube account interactions.
-
+<br><br>
 
 ## Available functions
-**For a detailed documentation, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
-**For a better understanding of a particular function, refer the [API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
+**For a detailed documentation of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
+**For a better understanding of a particular function, refer the [YouTube Data API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
 
 The following is a list of functions that you can call using one of the objects created above:<br>
 
@@ -102,19 +117,21 @@ The `param` parameter for each function must be an object type, following its [s
   - `videos_delete(params: schema_videos_delete)`
   - `watermarks_set(params: schema_watermarks_set, body: object)`
   - `watermarks_unset(params: schema_watermarks_unset)`
-  
+<br>
+
 ## Examples
 ```ts
 // A simple example to call the search_list function and log the response json.
-import {YouTube} from 'https://raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts';
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
-let obj = new YouTube("AIzaSyCtkYzQ4eYBA8v9M86T7nz3Fs6tES3AHdk", false);
+let obj = new YouTube("your-api-key-here", false);
 
 obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
  console.log(response);
 });
 
 ```
+<br>
 
 ## Contributing
 youtube-deno needs your support! The goal of youtube-deno is to ease the usage of the YouTube API with Deno, which is a great piece of software!
