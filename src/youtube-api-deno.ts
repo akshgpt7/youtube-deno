@@ -387,7 +387,7 @@ export interface schema_watermarks_unset extends param {
   onBehalfOfContentOwner?: string;
 }
 
-// MAIN YouTube CLASS
+// ---------- MAIN YouTube CLASS ----------
 
 export class YouTube {
   key: string;
@@ -395,7 +395,7 @@ export class YouTube {
   headers: header = {};
   content_headers: header = {};
 
-  constructor(readonly api_key: string, access_token: (boolean | string)) {
+  constructor(readonly api_key:string, access_token:(boolean | string)) {
     this.key = api_key;
     this.token = access_token;
     if (this.token == false) {
