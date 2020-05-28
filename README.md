@@ -44,7 +44,7 @@ let yt1 = new YouTube("Your-api-key-here", false); // The false is for access to
 ```
 (Remember: this object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
 
-Now, to use this object, just call [any function](https://github.com/akshgpt7/youtube-deno#available-functions) that only lists read-only public data. For example:
+Now, to use this object, just call [any function](https://github.com/akshgpt7/youtube-deno#calling-available-functions) that only lists read-only public data. For example:
 ```ts
 yt1.search_list({part: "snippet"}).then(function(response){
  console.log(response);
@@ -59,14 +59,14 @@ After obtaining an access token by following [these steps](https://developers.go
 ```ts
 let yt2 = new YouTube("your-api-key-here", "access-token-here");
 ```
-Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#available-functions) (by passing the apt parameters) which require YouTube account interactions.
+Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#calling-available-functions) (by passing the apt parameters) which require YouTube account interactions.
 <br><br>
 
 *This feature is under further development to allow you to generate the access token using youtube-deno itself.*
 
 ## Calling available functions
 **For the detailed API docs of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
-**For a better understanding of a particular function, refer the [YouTube Data API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
+**For a better understanding of a particular function and parameters information, refer the [YouTube Data API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
 
 The following is a list of functions that you can call using one of the objects created above:<br>
 
