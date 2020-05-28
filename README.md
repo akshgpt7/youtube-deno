@@ -30,15 +30,17 @@ Firstly, you'll have to register your app in the [Google Developers Console](htt
  
 After registering your app, enable the YouTube API for your app by clicking on the "ENABLE APIS AND SERVICES" button and selecting **"YouTube Data API v3"**.<br>
  
-After this, you'll need to create some credentials through the console to be able to make API requests.
+After this, you'll need to create some credentials through the console depending on what you want to do, to be able to make API requests. <br>
+There are two types of objects you can make according to your requirement:
 
 ### Objects that do not require user interactions
 If you only need to fetch public data from YouTube, then all you need is an API key. <br><br>
-Click on the "CREATE CREDENTIALS" button in the console and select **"API key"** from the options (Note that an API key is required for making each and every request to this API, so this step is mandatory).
+Click on the "CREATE CREDENTIALS" button in the console and select **"API key"** from the options. <br>
+**(Note that an API key is required for making each and every request to this API, so this step is mandatory)**
 <br><br>
 To create an object which uses this API key only for authentication:
 ```ts
-let yt1 = new YouTube("Your-api-key-here", false); // The false if for access token
+let yt1 = new YouTube("Your-api-key-here", false); // The false is for access token
 ```
 (Remember: this object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
 
@@ -50,6 +52,7 @@ yt1.search_list({part: "snippet"}).then(function(response){
 ```
 
 ### Objects that require user interactions (user consent by [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) authorization)
+(Note: Creating the API key from the previous section is mandatory.)<br><br>
 If you need to make requests that involve access to a YouTube account, you need the owner of each account to authorize your app. For that, you need an access token to be passed to the object you create.
 
 After obtaining an access token by following [these steps](https://developers.google.com/identity/protocols/oauth2/web-server#httprest) ([or this](https://developers.google.com/identity/protocols/oauth2)), create an object like this:
@@ -59,13 +62,15 @@ let yt2 = new YouTube("your-api-key-here", "access-token-here");
 Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#available-functions) (by passing the apt parameters) which require YouTube account interactions.
 <br><br>
 
-## Available functions
-**For a detailed documentation of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
+*This feature is under further development to allow you to generate the access token using youtube-deno itself.*
+
+## Calling available functions
+**For the detailed API docs of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
 **For a better understanding of a particular function, refer the [YouTube Data API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
 
 The following is a list of functions that you can call using one of the objects created above:<br>
 
-The `param` parameter for each function must be an object type, following its [schema](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts#schema_activities_insert). 
+The `params` parameter for each function must be an object type, following its [schema](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts#schema_activities_insert). 
 
   - `activities_list(params: schema_activities_list)`
   - `activities_insert(params: schema_activities_insert, body: object)`
