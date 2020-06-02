@@ -9,6 +9,9 @@ This library is a part of <br>
 <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/deno-64.png">
 </a>
 
+![Maintained](https://img.shields.io/maintenance/yes/2020?style=for-the-badge&logo=github)
+[![Stars](https://img.shields.io/github/stars/akshgpt7/youtube-deno?style=for-the-badge&logo=reverbnation)](hhttps://github.com/akshgpt7/youtube-deno/stargazers)
+
 </div>
 
 ---
