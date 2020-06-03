@@ -1128,11 +1128,3 @@ export class YouTube {
 }
 
 
-
-// test calls
-//
-// let obj = new YouTube("keyyyy", false);
-//
-// obj.search_list({part: "snippet"}).then(function(response){
-//   console.log(response);
-// });

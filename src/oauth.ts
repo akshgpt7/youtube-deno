@@ -1,6 +1,5 @@
 // This module handles the OAuth authentication of a user.
 
-import { open } from "./deps.ts";
 import { param } from "./youtube-api-deno.ts";
 
 const oauthEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -14,20 +13,21 @@ const scopes = [
   "https://www.googleapis.com/auth/youtubepartner-channel-audit",
 ];
 
-interface queryParams extends param {
+export interface queryParams extends param {
   client_id: string;
   redirect_uri: string;
   response_type?: "code" | "token";
   scope: string;
-  access_type?: "online" | "offline"; ///////////// read more
+  access_type?: "online" | "offline"; //////////////////////////////////////////////////////////// read more
   state?: string;
   include_granted_scopes?: boolean;
   login_hint?: string;
   prompt?: "none" | "consent select_account" | "consent" | "select_account";
 }
 
+
 export class authenticator {
-  private create_url(creds: queryParams) {
+  private create_url(creds: queryParams): string {
     let url: string = oauthEndpoint + "?response_type=token";
 
     for (let p in creds) {
@@ -50,23 +50,27 @@ export class authenticator {
     return url;
   }
 
-  async authenticate(credentials: queryParams) {
+  authenticate(credentials: queryParams): string {
     let auth_url: string = this.create_url(credentials);
-    await open(auth_url);
-    return fetch(auth_url);
+
+    // open this auth_url in browser and get the token
+    return auth_url;
   }
 }
+
+
+
 
 ///// testing call
 let obj = new authenticator();
 let creds: queryParams = {
   client_id:
-    "358555026629-51shvhftohpvbf3871m84k36ef2692d6.apps.googleusercontent.com",
+    "358555026629-9ln3to9buo3550b297g7335cou1715se.apps.googleusercontent.com",
   redirect_uri: "https://localhost:8080",
   scope: "https://www.googleapis.com/auth/youtube",
-  prompt: "consent",
+	prompt: "none"
 };
 
-obj.authenticate(creds).then(function (response) {
-  console.log(response);
-});
+let auth_url: string = obj.authenticate(creds);
+console.log(auth_url);
+
