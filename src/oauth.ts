@@ -1,6 +1,6 @@
 // This module handles the OAuth authentication of a user.
 
-import { param } from "./youtube-api-deno.ts";
+import { param } from "./schemas.ts";
 
 const oauthEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
 const scopes = [
@@ -13,7 +13,7 @@ const scopes = [
   "https://www.googleapis.com/auth/youtubepartner-channel-audit",
 ];
 
-export interface queryParams extends param {
+export interface authParams extends param {
   client_id: string;
   redirect_uri: string;
   response_type?: "code" | "token";
@@ -25,9 +25,8 @@ export interface queryParams extends param {
   prompt?: "none" | "consent select_account" | "consent" | "select_account";
 }
 
-
 export class authenticator {
-  private create_url(creds: queryParams): string {
+  private create_url(creds: authParams): string {
     let url: string = oauthEndpoint + "?response_type=token";
 
     for (let p in creds) {
@@ -50,7 +49,7 @@ export class authenticator {
     return url;
   }
 
-  authenticate(credentials: queryParams): string {
+  authenticate(credentials: authParams): string {
     let auth_url: string = this.create_url(credentials);
 
     // open this auth_url in browser and get the token
@@ -58,23 +57,13 @@ export class authenticator {
   }
 }
 
-
-
-
 ///// testing call
 let obj = new authenticator();
-let creds: queryParams = {
-<<<<<<< HEAD
-  client_id:
-    "358555026629-9ln3to9buo3550b297g7335cou1715se.apps.googleusercontent.com",
-=======
-  client_id: "REDACTED",
->>>>>>> 3e7c7ed2112812d2be01156e4bb5e986ead3890f
+let creds: authParams = {
+  client_id: "Aa",
   redirect_uri: "https://localhost:8080",
   scope: "https://www.googleapis.com/auth/youtube",
-	prompt: "none"
 };
 
 let auth_url: string = obj.authenticate(creds);
 console.log(auth_url);
-
