@@ -9,7 +9,7 @@ const version = "/v3";
 const base_url: string = "https://www.googleapis.com";
 const root_url: string = base_url + service + version + "/";
 
-export interface header {
+interface header {
   [key: string]: string;
 }
 

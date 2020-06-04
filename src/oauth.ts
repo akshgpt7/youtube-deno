@@ -1,4 +1,4 @@
-// This module handles the OAuth authentication of a user.
+// This module creates the OAuth authentication url of a user.
 
 import { param } from "./schemas.ts";
 
@@ -18,7 +18,7 @@ export interface authParams extends param {
   redirect_uri: string;
   response_type?: "code" | "token";
   scope: string;
-  access_type?: "online" | "offline"; //////////////////////////////////////////////////////////// read more
+  access_type?: "online" | "offline"; // handle refreshing
   state?: string;
   include_granted_scopes?: boolean;
   login_hint?: string;
@@ -56,14 +56,3 @@ export class authenticator {
     return auth_url;
   }
 }
-
-///// testing call
-//let obj = new authenticator();
-//let creds: authParams = {
-  //client_id: "REDACTED",
-  //redirect_uri: "https://localhost:8080",
-  //scope: "https://www.googleapis.com/auth/youtube",
-//};
-
-//let auth_url: string = obj.authenticate(creds);
-//console.log(auth_url);
