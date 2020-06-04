@@ -1,3 +1,3 @@
-export { YouTube } from './youtube-api-deno.ts';
+export { YouTube } from './youtube-deno.ts';
 export * from './oauth.ts';
 export * from './schemas.ts';
