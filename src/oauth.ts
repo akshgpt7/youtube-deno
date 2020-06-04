@@ -60,7 +60,7 @@ export class authenticator {
 ///// testing call
 let obj = new authenticator();
 let creds: authParams = {
-  client_id: "Aa",
+  client_id: "REDACTED",
   redirect_uri: "https://localhost:8080",
   scope: "https://www.googleapis.com/auth/youtube",
 };
