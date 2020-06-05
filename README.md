@@ -26,6 +26,8 @@ This library is a part of <br>
 - Easy to use.
 - All functionality just a function call away.
 - Usable for both Web Applications and personal CLI applications. 
+- Asynchronous requests.
+<br>
 
 ## Installing
 *Deno allows you to directly import modules from URLs!*
@@ -165,6 +167,7 @@ The `params` parameter for each function must be an object type, following its [
 <br>
 
 *All the functions return the response JSON after making the request.*
+<br>
 
 ## Examples
 ```ts
