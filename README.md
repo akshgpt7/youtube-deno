@@ -115,7 +115,6 @@ The following is a list of functions that you can call using one of the objects 
 The `params` parameter for each function must be an object type, following its [schema](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts#schema_activities_insert). 
 
   - `activities_list(params: schema_activities_list)`
-  - `activities_insert(params: schema_activities_insert, body: object)`
   - `captions_list(params: schema_captions_list)`
   - `captions_insert(params: schema_captions_insert, body: object)`
   - `captions_update(params: schema_captions_update, body: object)`

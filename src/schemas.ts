@@ -17,9 +17,12 @@ export interface schema_activities_list extends param {
   regionCode?: string;
 }
 
+/* Deprecated
+ 
 export interface schema_activities_insert extends param {
   part: string;
 }
+*/
 
 export interface schema_captions_list extends param {
   part: string;
