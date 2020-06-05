@@ -63,8 +63,8 @@ export class YouTube {
       });
   }
 
-	/*  YouTube has deprecated the channel bulletin feature, 
-	 *  and this method is no longer supported.
+  /*  YouTube has deprecated the channel bulletin feature, 
+   *  and this method is no longer supported.
 
   activities_insert(params: schemas.schema_activities_insert, body: object) {
     let method = "activities";
@@ -81,7 +81,7 @@ export class YouTube {
         return response.json();
       });
   }
-	*/
+  */
 
   captions_list(params: schemas.schema_captions_list) {
     let method = "captions";
