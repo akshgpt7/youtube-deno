@@ -19,11 +19,19 @@ This library is a part of <br>
 ---
 <br>
 
+## Why?
+- Actively maintained.
+- Supports latest YouTube Data API v3.
+- OAuth 2.0 support out of the box.
+- Easy to use.
+- All functionality just a function call away.
+- Usable for both Web Applications and personal CLI applications. 
+
 ## Installing
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
-import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
 ```
 <br>
 
@@ -75,7 +83,7 @@ If you do not have an access token already, you can generate it using our `authe
 - Fill the "Authorized Redirect URI" textarea with the URL where you want to redirect users after they authorize their YouTube account. (Note: If you're making a CLI application for your own use, you can enter this as `https://localhost:8080`)
 - Now, use the following code snippet (replacing with your own keys) to create an authentication URL:
 ```ts
-import {authenticator, authParams} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { authenticator, authParams } from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
 let auth = new authenticator();
 let creds: authParams = {
@@ -161,7 +169,7 @@ The `params` parameter for each function must be an object type, following its [
 ## Examples
 ```ts
 // A simple example to call the search_list() function and log the response json.
-import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
 let obj = new YouTube("your-api-key-here", false);
 
@@ -173,7 +181,7 @@ obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
 
 ```ts
 // An example to call the activities_list() function using an authorized access token and log the response json.
-import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
 let obj = new YouTube("your-api-key-here", "access-token-here");
 
