@@ -57,7 +57,7 @@ To create an object which uses this API key only for authentication:
 ```ts
 let yt = new YouTube("Your-api-key-here", false); // The false is for access token
 ```
-(Remember: this object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
+(Remember: This object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
 
 Now, to use this object, just call [any function](https://github.com/akshgpt7/youtube-deno#calling-available-functions) that only lists read-only public data. For example:
 ```ts
@@ -79,7 +79,7 @@ Now, using this object you can call [functions](https://github.com/akshgpt7/yout
 <br>
 
 **Case 2: You do not have an access token**<br>
-If you do not have an access token already, you can generate it using our `authenticator` class. For that,follow these steps:
+If you do not have an access token already, you can generate it using our `authenticator` class. For that, follow these steps:
 - You first need to create some more credentials. Head to the [Google Developers Console](https://console.developers.google.com/apis/credentials) and under "CREATE CREDENTIALS", select "OAuth client ID".
 - Select "Web Application" under Application type.
 - Fill the "Authorized Redirect URI" textarea with the URL where you want to redirect users after they authorize their YouTube account. (Note: If you're making a CLI application for your own use, you can enter this as `https://localhost:8080`)
