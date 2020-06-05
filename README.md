@@ -45,7 +45,7 @@ Click on the "CREATE CREDENTIALS" button in the console and select **"API key"**
 <br><br>
 To create an object which uses this API key only for authentication:
 ```ts
-let yt1 = new YouTube("Your-api-key-here", false); // The false is for access token
+let yt = new YouTube("Your-api-key-here", false); // The false is for access token
 ```
 (Remember: this object is not allowed to perform any account related operation, so you won’t be able to like a video, subscribe to a channel or delete a playlist etc. from a specific account. You will only be able to retrieve read-only public data. For these operations, create an [OAuth authorized object](#objects-that-require-user-interactions-user-consent-by-oauth-20-authorization))
 
@@ -58,17 +58,44 @@ yt1.search_list({part: "snippet"}).then(function(response){
 
 ### Objects that require user interactions (user consent by [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) authorization)
 (Note: Creating the API key from the previous section is mandatory.)<br><br>
-If you need to make requests that involve access to a YouTube account, you need the owner of each account to authorize your app. For that, you need an access token to be passed to the object you create.
+If you need to make requests that involve access to a YouTube account, you need the owner of each account to authorize your app. For that, you need an access token to be passed to the object you create. This can have the following cases:
 
-After obtaining an access token by following [these steps](https://developers.google.com/identity/protocols/oauth2/web-server#httprest) ([or this](https://developers.google.com/identity/protocols/oauth2)), create an object like this:
+**Case 1: You already have an access token**<br>
+If you already have an access token, you simply have to pass it while creating the object:
 ```ts
-let yt2 = new YouTube("your-api-key-here", "access-token-here");
+let yt = new YouTube("your-api-key-here", "access-token-here");
 ```
 Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#calling-available-functions) (by passing the apt parameters) which require YouTube account interactions.
+<br>
+
+**Case 2: You do not have an access token**<br>
+If you do not have an access token already, you can generate it using our `authenticator` class. For that,follow these steps:
+- You first need to create some more credentials. Head to the [Google Developers Console](https://console.developers.google.com/apis/credentials) and under "CREATE CREDENTIALS", select "OAuth client ID".
+- Select "Web Application" under Application type.
+- Fill the "Authorized Redirect URI" textarea with the URL where you want to redirect users after they authorize their YouTube account. (Note: If you're making a CLI application for your own use, you can enter this as `https://localhost:8080`)
+- Now, use the following code snippet (replacing with your own keys) to create an authentication URL:
+```ts
+import {authenticator, authParams} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+
+let auth = new authenticator();
+let creds: authParams = {
+	client_id: "your-client-id",
+	redirect_uri: "your-redirect-uri",
+	scope: "your-decided-scopes"
+};
+
+let auth_url: string = auth.authenticate(creds);
+```
+Here, copy the client ID that you just created from the console under `client-id` field. The `redirect_uri` field must contain the same one as you filled in the form at the Developer console. The `scope` field tells how much access you want the user to grant to your app, decide the scopes [from here](https://developers.google.com/identity/protocols/oauth2/scopes#youtube) and add space delimited values in the string for multiple scopes (Exapmle: `scope: "https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.upload"`).
+- The `auth_url` variable made stores the created URL. If you're making a web application, redirect the user to this URL through a button in your app. Then the user will be prompted to decide if they want to grant access or not. Every user who authorizes your app will be redirected to the `redirect_uri` with an extra `#access_token` parameter that is a long random string. Just fetch this access token from the URL and pass it to the object that you create:
+```ts
+let yt = new YouTube("your-api-key-here", "access-token-here");
+```
+Now, using this object you can call [functions](https://github.com/akshgpt7/youtube-deno#calling-available-functions) (by passing the apt parameters) which require YouTube account interactions.
+
+*(Note: For CLI applications for personal use, you can open the `auth_url` manually in a browser and after giving access, you'll be redirected to the `redirect_uri` with an extra `#access_token` parameter which you can copy into the object created above)*
+
 <br><br>
-
-*This feature is under further development to allow you to generate the access token using youtube-deno itself.*
-
 ## Calling available functions
 **For the detailed API docs of this client library, look [here](https://doc.deno.land/https/raw.githubusercontent.com/akshgpt7/youtube-api-deno/master/src/mod.ts).**<br>
 **For a better understanding of a particular function and parameters information, refer the [YouTube Data API docs](https://developers.google.com/youtube/v3/docs) for that function.**<br><br>
@@ -129,9 +156,11 @@ The `params` parameter for each function must be an object type, following its [
   - `watermarks_unset(params: schema_watermarks_unset)`
 <br>
 
+*All the functions return the response JSON after making the request.*
+
 ## Examples
 ```ts
-// A simple example to call the search_list function and log the response json.
+// A simple example to call the search_list() function and log the response json.
 import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
 
 let obj = new YouTube("your-api-key-here", false);
@@ -139,6 +168,19 @@ let obj = new YouTube("your-api-key-here", false);
 obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
  console.log(response);
 });
+
+```
+
+```ts
+// An example to call the activities_list() function using an authorized access token and log the response json.
+import {YouTube} from 'https://deno.land/x/youtube_deno/src/mod.ts';
+
+let obj = new YouTube("your-api-key-here", "access-token-here");
+
+obj.activities_list({part: "snippet", mine: true}).then(function(response){
+ console.log(response);
+});
+
 
 ```
 <br>
