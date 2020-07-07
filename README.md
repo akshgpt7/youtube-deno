@@ -9,6 +9,8 @@ This library is a part of <br>
 <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/deno-64.png">
 </a>
 
+[![nest badge](https://nest.land/badge.svg)](https://nest.land/package/youtube-deno)
+
 <hr>
 
 ![Maintained](https://img.shields.io/maintenance/yes/2020?style=for-the-badge&logo=github)
