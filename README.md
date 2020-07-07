@@ -35,7 +35,7 @@ This library is a part of <br>
 *Deno allows you to directly import modules from URLs!*
 To import and use the client in your file, add the following import statement:
 ```ts
-import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/mod.ts';
 ```
 <br>
 
@@ -173,7 +173,7 @@ The `params` parameter for each function must be an object type, following its [
 ## Examples
 ```ts
 // A simple example to call the search_list() function and log the response json.
-import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/mod.ts';
 
 let obj = new YouTube("your-api-key-here", false);
 
@@ -185,7 +185,7 @@ obj.search_list({part: "snippet", q: "coldplay"}).then(function(response){
 
 ```ts
 // An example to call the activities_list() function using an authorized access token and log the response json.
-import { YouTube } from 'https://deno.land/x/youtube_deno/src/mod.ts';
+import { YouTube } from 'https://deno.land/x/youtube_deno/mod.ts';
 
 let obj = new YouTube("your-api-key-here", "access-token-here");
 
