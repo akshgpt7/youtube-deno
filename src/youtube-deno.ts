@@ -6,7 +6,7 @@ import * as schemas from "./schemas.ts";
 
 const service = "/youtube";
 const version = "/v3";
-const base_url: string = "https://www.googleapis.com";
+const base_url = "https://www.googleapis.com";
 const root_url: string = base_url + service + version + "/";
 
 interface header {

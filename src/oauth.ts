@@ -30,7 +30,9 @@ export class authenticator {
     let url: string = oauthEndpoint + "?response_type=token";
 
     for (let p in creds) {
-      if (p == "response_type") {}
+			if (p == "response_type") {
+				// Don't add to url (pass)
+			}
       else if (p == "scope") {
         url += "&scope=";
         let scope_list: string[] = creds[p].split(" ");
