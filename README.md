@@ -29,6 +29,7 @@ This library is a part of <br>
 - All functionality just a function call away.
 - Usable for both Web Applications and personal CLI applications. 
 - Asynchronous requests.
+- No external dependencies.
 <br>
 
 ## Installing
