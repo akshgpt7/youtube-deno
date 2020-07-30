@@ -1,6 +1,7 @@
 // Schemas for various function parameters.
 
 export interface param {
+  // deno-lint-ignore no-explicit-any
   [parameter: string]: any;
 }
 
