@@ -18,7 +18,6 @@ export interface schema_activities_list extends param {
   regionCode?: string;
 }
 
-
 export interface schema_captions_list extends param {
   part: string;
   videoId: string;
@@ -158,7 +157,6 @@ export interface schema_commentThreads_insert extends param {
 export interface schema_commentThreads_update extends param {
   part: string;
 }
-
 
 export interface schema_i18nLanguages_list extends param {
   part: string;

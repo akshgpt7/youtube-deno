@@ -63,7 +63,6 @@ export class YouTube {
       });
   }
 
-
   captions_list(params: schemas.schema_captions_list) {
     let method = "captions";
     let request_url = this.create_url(method, params);
@@ -382,7 +381,6 @@ export class YouTube {
         return response.json();
       });
   }
-
 
   i18nLanguages_list(params: schemas.schema_i18nLanguages_list) {
     let method = "i18nLanguages";
