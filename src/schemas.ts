@@ -17,12 +17,6 @@ export interface schema_activities_list extends param {
   regionCode?: string;
 }
 
-/* Deprecated
- 
-export interface schema_activities_insert extends param {
-  part: string;
-}
-*/
 
 export interface schema_captions_list extends param {
   part: string;
@@ -67,14 +61,12 @@ export interface schema_channelBanners_insert extends param {
 
 export interface schema_channels_list extends param {
   part: string;
-  categoryId?: string;
   forUsername?: string;
   hl?: string;
   id?: string;
   managedByMe?: boolean;
   maxResults?: number;
   mine?: boolean;
-  mySubscribers?: boolean;
   onBehalfOfContentOwner?: string;
   pageToken?: string;
 }
@@ -166,12 +158,6 @@ export interface schema_commentThreads_update extends param {
   part: string;
 }
 
-export interface schema_guideCategories_list extends param {
-  part: string;
-  hl?: string;
-  id?: string;
-  regionCode?: string;
-}
 
 export interface schema_i18nLanguages_list extends param {
   part: string;

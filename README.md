@@ -139,7 +139,6 @@ The `params` parameter for each function must be an object type, following its [
   - `commentThreads_list(params: schema_commentThreads_list)`
   - `commentThreads_insert(params: schema_commentThreads_insert, body: object)`
   - `commentThreads_update(params: schema_commentThreads_update, body: object)`
-  - `guideCategories_list(params: schema_guideCategories_list)`
   - `i18nLanguages_list(params: schema_i18nLanguages_list)`
   - `i18nRegions_list(params: schema_i18nRegions_list)`
   - `playlistItems_list(params: schema_playlistItems_list)`

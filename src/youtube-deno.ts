@@ -63,25 +63,6 @@ export class YouTube {
       });
   }
 
-  /*  YouTube has deprecated the channel bulletin feature, 
-	 *  and this method is no longer supported.
-
-  activities_insert(params: schemas.schema_activities_insert, body: object) {
-    let method = "activities";
-    let request_url = this.create_url(method, params);
-
-    let init = {
-      headers: this.content_headers,
-      body: body.toString(),
-      method: "POST",
-    };
-
-    return fetch(request_url, init)
-      .then(function (response) {
-        return response.json();
-      });
-  }
-  */
 
   captions_list(params: schemas.schema_captions_list) {
     let method = "captions";
@@ -402,17 +383,6 @@ export class YouTube {
       });
   }
 
-  guideCategories_list(params: schemas.schema_guideCategories_list) {
-    let method = "guideCategories";
-    let request_url = this.create_url(method, params);
-
-    let init = { headers: this.headers };
-
-    return fetch(request_url, init)
-      .then(function (response) {
-        return response.json();
-      });
-  }
 
   i18nLanguages_list(params: schemas.schema_i18nLanguages_list) {
     let method = "i18nLanguages";
