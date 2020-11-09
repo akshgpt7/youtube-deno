@@ -75,7 +75,10 @@ export class YouTube {
       });
   }
 
-  captions_insert(params: schemas.schema_captions_insert, body: Record<string, unknown>) {
+  captions_insert(
+    params: schemas.schema_captions_insert,
+    body: Record<string, unknown>,
+  ) {
     const method = "captions";
     const requestUrl = this.create_url(method, params);
 
@@ -91,7 +94,10 @@ export class YouTube {
       });
   }
 
-  captions_update(params: schemas.schema_captions_update, body: Record<string, unknown>) {
+  captions_update(
+    params: schemas.schema_captions_update,
+    body: Record<string, unknown>,
+  ) {
     const method = "captions";
     const requestUrl = this.create_url(method, params);
 
@@ -172,7 +178,10 @@ export class YouTube {
       });
   }
 
-  channels_update(params: schemas.schema_channels_update, body: Record<string, unknown>) {
+  channels_update(
+    params: schemas.schema_channels_update,
+    body: Record<string, unknown>,
+  ) {
     const method = "channels";
     const requestUrl = this.create_url(method, params);
 
@@ -262,7 +271,10 @@ export class YouTube {
       });
   }
 
-  comments_insert(params: schemas.schema_comments_insert, body: Record<string, unknown>) {
+  comments_insert(
+    params: schemas.schema_comments_insert,
+    body: Record<string, unknown>,
+  ) {
     const method = "comments";
     const requestUrl = this.create_url(method, params);
 
@@ -278,7 +290,10 @@ export class YouTube {
       });
   }
 
-  comments_update(params: schemas.schema_comments_update, body?: Record<string, unknown>) {
+  comments_update(
+    params: schemas.schema_comments_update,
+    body?: Record<string, unknown>,
+  ) {
     const method = "comments";
     const requestUrl = this.create_url(method, params);
 
@@ -484,7 +499,10 @@ export class YouTube {
       });
   }
 
-  playlists_insert(params: schemas.schema_playlists_insert, body: Record<string, unknown>) {
+  playlists_insert(
+    params: schemas.schema_playlists_insert,
+    body: Record<string, unknown>,
+  ) {
     const method = "playlists";
     const requestUrl = this.create_url(method, params);
 
@@ -500,7 +518,10 @@ export class YouTube {
       });
   }
 
-  playlists_update(params: schemas.schema_playlists_update, body: Record<string, unknown>) {
+  playlists_update(
+    params: schemas.schema_playlists_update,
+    body: Record<string, unknown>,
+  ) {
     const method = "playlists";
     const requestUrl = this.create_url(method, params);
 
@@ -583,7 +604,10 @@ export class YouTube {
       });
   }
 
-  thumbnails_set(params: schemas.schema_thumbnails_set, body?: Record<string, unknown>) {
+  thumbnails_set(
+    params: schemas.schema_thumbnails_set,
+    body?: Record<string, unknown>,
+  ) {
     const method = "thumbnails/set";
     const requestUrl = this.create_url(method, params);
 
@@ -637,7 +661,10 @@ export class YouTube {
       });
   }
 
-  videos_insert(params: schemas.schema_videos_insert, body: Record<string, unknown>) {
+  videos_insert(
+    params: schemas.schema_videos_insert,
+    body: Record<string, unknown>,
+  ) {
     const method = "videos";
     const requestUrl = this.create_url(method, params);
 
@@ -653,7 +680,10 @@ export class YouTube {
       });
   }
 
-  videos_update(params: schemas.schema_videos_update, body: Record<string, unknown>) {
+  videos_update(
+    params: schemas.schema_videos_update,
+    body: Record<string, unknown>,
+  ) {
     const method = "videos";
     const requestUrl = this.create_url(method, params);
 
@@ -693,7 +723,10 @@ export class YouTube {
       });
   }
 
-  videos_reportAbuse(params: schemas.schema_videos_reportAbuse, body: Record<string, unknown>) {
+  videos_reportAbuse(
+    params: schemas.schema_videos_reportAbuse,
+    body: Record<string, unknown>,
+  ) {
     // Provide an empty object {} as first function parameter if you do not
     // want to pass any optional url parameters.
     // The second parameter being body.
@@ -724,7 +757,10 @@ export class YouTube {
       });
   }
 
-  watermarks_set(params: schemas.schema_watermarks_set, body: Record<string, unknown>) {
+  watermarks_set(
+    params: schemas.schema_watermarks_set,
+    body: Record<string, unknown>,
+  ) {
     const method = "watermarks/set";
     const requestUrl = this.create_url(method, params);
 
