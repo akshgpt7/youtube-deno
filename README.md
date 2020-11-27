@@ -13,8 +13,10 @@ This library is a part of <br>
 
 <hr>
 
-![Maintained](https://img.shields.io/maintenance/yes/2020?style=for-the-badge&logo=github)
-[![Stars](https://img.shields.io/github/stars/akshgpt7/youtube-deno?style=for-the-badge&logo=reverbnation)](hhttps://github.com/akshgpt7/youtube-deno/stargazers)
+![Maintained](https://img.shields.io/maintenance/yes/2020?style=flat&logo=github)
+[![Stars](https://img.shields.io/github/stars/akshgpt7/youtube-deno?style=flat&logo=reverbnation)](hhttps://github.com/akshgpt7/youtube-deno/stargazers)
+[![Telegram](https://badgen.net/badge/icon/telegram/cyan?icon=telegram&label)](https://t.me/joinchat/N4E6lx25rNG0IJk-hxqnCg)
+
 
 </div>
 
@@ -200,5 +202,6 @@ obj.activities_list({part: "snippet", mine: true}).then(function(response){
 ## Contributing
 youtube-deno needs your support! The goal of youtube-deno is to ease the usage of the YouTube API with Deno, which is a great piece of software!
 
-If you find that a method is missing, find a change in YouTube Data API v3, notice a bug or issue, just fork the project, add the missing code, write the appropriate tests, then submit a pull request, and it will gladly be merged!
-  
+If you find that a method is missing, find a change in YouTube Data API v3, notice a bug or issue, open an issue for it and once it's confirmed, just fork the project, make the relevant change, write the appropriate tests, then submit a pull request, and it will gladly be merged!<br>
+
+**For any sort of queries or discussions regarding the project, [join our Telegram channel](https://t.me/joinchat/N4E6lx25rNG0IJk-hxqnCg)**.
