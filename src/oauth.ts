@@ -18,7 +18,7 @@ export interface authParams extends param {
   redirect_uri: string;
   response_type?: "code" | "token";
   scope: string;
-  access_type?: "online" | "offline"; // handle refreshing
+  access_type?: "online" | "offline"; // TODO: handle refreshing
   state?: string;
   include_granted_scopes?: boolean;
   login_hint?: string;
@@ -29,19 +29,19 @@ export class authenticator {
   private create_url(creds: authParams): string {
     let url: string = oauthEndpoint + "?response_type=token";
 
-    for (let p in creds) {
+    for (const p in creds) {
       if (p == "response_type") {
         // Don't add to url (pass)
       } else if (p == "scope") {
         url += "&scope=";
-        let scope_list: string[] = creds[p].split(" ");
-        for (let s of scope_list) {
+        const scopeList: string[] = creds[p].split(" ");
+        for (const s of scopeList) {
           if (scopes.includes(s) == false) {
             throw new Error("Invalid scope: " + s);
           }
         }
-        let add_scopes: string = scope_list.join("+");
-        url += add_scopes;
+        const addScopes: string = scopeList.join("+");
+        url += addScopes;
       } else {
         url += `&${p}=${creds[p].toString()}`;
       }
@@ -51,9 +51,9 @@ export class authenticator {
   }
 
   authenticate(credentials: authParams): string {
-    let auth_url: string = this.create_url(credentials);
+    const authUrl: string = this.create_url(credentials);
 
-    // open this auth_url in browser and get the token
-    return auth_url;
+    // open this authUrl in browser and get the token
+    return authUrl;
   }
 }
