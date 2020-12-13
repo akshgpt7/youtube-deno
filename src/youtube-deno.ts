@@ -19,10 +19,10 @@ export class YouTube {
   key: string;
   token: (string | boolean);
   headers: header = {};
-  content_headers: header = {};
+  contentHeaders: header = {};
 
-  constructor(readonly api_key: string, accessToken: (boolean | string)) {
-    this.key = api_key;
+  constructor(readonly apiKey: string, accessToken: (boolean | string)) {
+    this.key = apiKey;
     this.token = accessToken;
     if (this.token == false) {
       this.headers = { "Accept": "application/json" };
@@ -33,8 +33,8 @@ export class YouTube {
       };
     }
 
-    this.content_headers = this.headers;
-    this.content_headers["Content-Type"] = "application/json";
+    this.contentHeaders = this.headers;
+    this.contentHeaders["Content-Type"] = "application/json";
   }
 
   private create_url(method: string, params?: schemas.param) {
@@ -83,7 +83,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -102,7 +102,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -155,7 +155,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body?.toString(),
       method: "POST",
     };
@@ -186,7 +186,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -217,7 +217,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -236,7 +236,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -279,7 +279,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -298,7 +298,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body?.toString(),
       method: "PUT",
     };
@@ -367,7 +367,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -386,7 +386,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -445,7 +445,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -464,7 +464,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -507,7 +507,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -526,7 +526,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -581,7 +581,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -669,7 +669,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -688,7 +688,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "PUT",
     };
@@ -734,7 +734,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };
@@ -765,7 +765,7 @@ export class YouTube {
     const requestUrl = this.create_url(method, params);
 
     const init = {
-      headers: this.content_headers,
+      headers: this.contentHeaders,
       body: body.toString(),
       method: "POST",
     };

@@ -18,7 +18,7 @@ export interface authParams extends param {
   redirect_uri: string;
   response_type?: "code" | "token";
   scope: string;
-  access_type?: "online" | "offline"; // handle refreshing
+  access_type?: "online" | "offline"; // TODO: handle refreshing
   state?: string;
   include_granted_scopes?: boolean;
   login_hint?: string;
