@@ -421,6 +421,30 @@ export class YouTube {
       });
   }
 
+  liveBroadcasts(params: schemas.live_LiveBroadcasts_list) {
+    const method = "liveBroadcasts";
+    const request_url = this.create_url(method, params);
+
+    const init = { headers: this.headers };
+
+    return fetch(request_url, init)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  liveChat(params: schemas.live_liveChat_list) {
+    const method = "liveChat/messages";
+    const request_url = this.create_url(method, params);
+
+    const init = { headers: this.headers };
+
+    return fetch(request_url, init)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
   // NOTE: The members.list and membershipsLevels.list methods of the API
   // require prior approval from YouTube,
   // hence we've not included those methods in this client library.
