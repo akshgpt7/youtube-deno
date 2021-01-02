@@ -167,7 +167,7 @@ export interface schema_i18nRegions_list extends param {
   part: string;
   hl?: string;
 }
-export interface live_LiveBroadcasts_list extends param {
+export interface schema_live_LiveBroadcasts_list extends param {
   part: string;
   broadcastStatus?: string;
   broadcastType?: string;
@@ -179,7 +179,7 @@ export interface live_LiveBroadcasts_list extends param {
   pageToken?: string;
 }
 
-export interface live_liveChat_list extends param {
+export interface schema_live_liveChat_list extends param {
   part: string;
   liveChatId?: string;
   maxResults?: number;

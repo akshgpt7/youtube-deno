@@ -421,7 +421,7 @@ export class YouTube {
       });
   }
 
-  liveBroadcasts(params: schemas.live_LiveBroadcasts_list) {
+  liveBroadcasts(params: schemas.schema_live_LiveBroadcasts_list) {
     const method = "liveBroadcasts";
     const request_url = this.create_url(method, params);
 
@@ -433,7 +433,7 @@ export class YouTube {
       });
   }
 
-  liveChat(params: schemas.live_liveChat_list) {
+  liveChat(params: schemas.schema_live_liveChat_list) {
     const method = "liveChat/messages";
     const request_url = this.create_url(method, params);
 
