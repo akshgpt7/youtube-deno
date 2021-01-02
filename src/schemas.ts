@@ -188,6 +188,13 @@ export interface schema_live_liveChat_list extends param {
   onBehalfOfContentOwnerChannel?: string;
   profileImageSize?: string;
 }
+
+export interface schema_live_superChatEvent_list extends param {
+  part: string;
+  maxResults?: number;
+  hl?: boolean;
+  pageToken?: string;
+}
 export interface schema_playlistItems_list extends param {
   part: string;
   id?: string;
