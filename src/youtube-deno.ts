@@ -9,17 +9,13 @@ const version = "/v3";
 const baseUrl = "https://www.googleapis.com";
 const rootUrl: string = baseUrl + service + version + "/";
 
-interface header {
-  [key: string]: string;
-}
-
 // ---------- MAIN YouTube CLASS ----------
 
 export class YouTube {
   key: string;
   token: (string | boolean);
-  headers: header = {};
-  contentHeaders: header = {};
+  headers: schemas.header = {};
+  contentHeaders: schemas.header = {};
 
   constructor(readonly apiKey: string, accessToken: (boolean | string)) {
     this.key = apiKey;
@@ -37,7 +33,7 @@ export class YouTube {
     this.contentHeaders["Content-Type"] = "application/json";
   }
 
-  private create_url(method: string, params?: schemas.param) {
+  create_url(method: string, params?: schemas.param) {
     let url = rootUrl + method + `?key=${this.key}`;
 
     if (params !== undefined) {
