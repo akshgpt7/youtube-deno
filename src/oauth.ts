@@ -1,6 +1,6 @@
 // This module creates the OAuth authentication url of a user.
 
-import { param } from "./schemas.ts";
+import { param } from "./schemas/schemas.ts";
 
 const oauthEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
 const scopes = [
