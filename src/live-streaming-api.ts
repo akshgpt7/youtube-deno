@@ -1,11 +1,6 @@
 import * as schemas from "./schemas.ts";
 import { YouTube } from "./youtube-deno.ts";
 
-const service = "/youtube";
-const version = "/v3";
-const baseUrl = "https://www.googleapis.com";
-const rootUrl: string = baseUrl + service + version + "/";
-
 export class YouTube_live extends YouTube {
   key: string;
   token: (string | boolean);
