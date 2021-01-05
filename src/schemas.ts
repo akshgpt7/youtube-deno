@@ -171,7 +171,34 @@ export interface schema_i18nRegions_list extends param {
   part: string;
   hl?: string;
 }
+export interface schema_live_LiveBroadcasts_list extends param {
+  part: string;
+  broadcastStatus?: string;
+  broadcastType?: string;
+  id?: string;
+  maxResults?: number;
+  mine?: boolean;
+  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwnerChannel?: string;
+  pageToken?: string;
+}
 
+export interface schema_live_liveChat_list extends param {
+  part: string;
+  liveChatId?: string;
+  maxResults?: number;
+  hl?: boolean;
+  pageToken?: string;
+  onBehalfOfContentOwnerChannel?: string;
+  profileImageSize?: string;
+}
+
+export interface schema_live_superChatEvent_list extends param {
+  part: string;
+  maxResults?: number;
+  hl?: boolean;
+  pageToken?: string;
+}
 export interface schema_playlistItems_list extends param {
   part: string;
   id?: string;
