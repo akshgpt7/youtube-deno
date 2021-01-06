@@ -1,4 +1,4 @@
-import * as schemas from "./schemas.ts";
+import * as schemas from "./schemas/schemas_live.ts";
 import { YouTube } from "./youtube-deno.ts";
 
 export class YouTube_live extends YouTube {

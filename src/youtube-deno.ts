@@ -2,7 +2,7 @@
  *  on the YouTube website into your own website or application.
  */
 
-import * as schemas from "./schemas.ts";
+import * as schemas from "./schemas/schemas.ts";
 
 const service = "/youtube";
 const version = "/v3";
@@ -33,7 +33,7 @@ export class YouTube {
     this.contentHeaders["Content-Type"] = "application/json";
   }
 
-  create_url(method: string, params?: schemas.param) {
+  protected create_url(method: string, params?: schemas.param) {
     let url = rootUrl + method + `?key=${this.key}`;
 
     if (params !== undefined) {
