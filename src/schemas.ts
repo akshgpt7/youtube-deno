@@ -5,6 +5,10 @@ export interface param {
   [parameter: string]: any;
 }
 
+export interface header {
+  [key: string]: string;
+}
+
 // ----------Parameter schemas for different methods----------
 
 export interface schema_activities_list extends param {
