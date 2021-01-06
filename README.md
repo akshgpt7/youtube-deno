@@ -13,7 +13,7 @@ This library is a part of <br>
 
 <hr>
 
-![Maintained](https://img.shields.io/maintenance/yes/2020?style=flat&logo=github)
+![Maintained](https://img.shields.io/maintenance/yes/2021?style=flat&logo=github)
 [![Stars](https://img.shields.io/github/stars/akshgpt7/youtube-deno?style=flat&logo=reverbnation)](hhttps://github.com/akshgpt7/youtube-deno/stargazers)
 [![Telegram](https://badgen.net/badge/icon/telegram/cyan?icon=telegram&label)](https://t.me/joinchat/N4E6lx25rNG0IJk-hxqnCg)
 
