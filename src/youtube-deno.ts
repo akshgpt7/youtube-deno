@@ -2,24 +2,20 @@
  *  on the YouTube website into your own website or application.
  */
 
-import * as schemas from "./schemas.ts";
+import * as schemas from "./schemas/schemas.ts";
 
 const service = "/youtube";
 const version = "/v3";
 const baseUrl = "https://www.googleapis.com";
 const rootUrl: string = baseUrl + service + version + "/";
 
-interface header {
-  [key: string]: string;
-}
-
 // ---------- MAIN YouTube CLASS ----------
 
 export class YouTube {
   key: string;
   token: (string | boolean);
-  headers: header = {};
-  contentHeaders: header = {};
+  headers: schemas.header = {};
+  contentHeaders: schemas.header = {};
 
   constructor(readonly apiKey: string, accessToken: (boolean | string)) {
     this.key = apiKey;
@@ -37,7 +33,7 @@ export class YouTube {
     this.contentHeaders["Content-Type"] = "application/json";
   }
 
-  private create_url(method: string, params?: schemas.param) {
+  protected create_url(method: string, params?: schemas.param) {
     let url = rootUrl + method + `?key=${this.key}`;
 
     if (params !== undefined) {

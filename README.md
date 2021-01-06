@@ -143,6 +143,9 @@ The `params` parameter for each function must be an object type, following its [
   - `commentThreads_update(params: schema_commentThreads_update, body: object)`
   - `i18nLanguages_list(params: schema_i18nLanguages_list)`
   - `i18nRegions_list(params: schema_i18nRegions_list)`
+  - `liveBroadcasts_list(params: schema_live_LiveBroadcasts_list)`
+  - `liveChat_list(params: schema_live_liveChat_list)`
+  - `liveSuperChatEvents_list(params: schema_live_superChatEvent_list)`
   - `playlistItems_list(params: schema_playlistItems_list)`
   - `playlistItems_insert(params: schema_playlistItems_insert, body: object)`
   - `playlistItems_update(params: schema_playlistItems_update, body: object)`
