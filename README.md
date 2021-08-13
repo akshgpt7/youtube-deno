@@ -24,7 +24,7 @@ This library is a part of <br>
 <br>
 
 ## Why?
-- Actively maintained.
+
 - Supports latest YouTube Data API v3.
 - OAuth 2.0 support out of the box.
 - Easy to use.
